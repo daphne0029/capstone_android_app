@@ -1,7 +1,7 @@
 ﻿body {
     padding: 0px;
     margin: 0px;
-    height: 100%;
+    height: 1000px;
 }
 
 .pageTitle {
@@ -22,17 +22,18 @@
 }
 
 .image {
-    float: left;
+    padding: 2em;
     max-width: 400px;
     margin: 0;
-    padding: 1em;
+   
 }
 
-.profile {
-    margin-left: 350px;
+.profileDetails {
+    margin-left: 430px;
+    margin-top: -230px;
     border-left: 1px solid gray;
     padding: 1em;
-    background-color: #e8b4e7;
+    
 }
 
 .crop {
@@ -51,16 +52,17 @@
 }
 
 .container {
-   min-height:100%;
+   height:1400px;
    position:relative;
 }
 
 .main {
-   padding:10px;
-   padding-bottom:50px;
+   height: 1250px;
+   font-size: 25px;
+
+   background-color: #85e085;
 }
 
-.icon {
-    color: green;
-    font-size: 1.1em;
+.tableEntry {
+    font-size: 25px;
 }

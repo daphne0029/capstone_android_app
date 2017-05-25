@@ -1,82 +1,73 @@
 <head>
     <link href="sampleDStatus.css" rel="stylesheet"/>
+    <link href="sampleHome.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/e3cb9aa20a.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div id="header">
-            <div class="backbutton">
-                <h1> < </h1>
-            </div>
-            <div class="pageTitle">
-                <h1 style="text-align: center" ;> GAIA </h1>
-            </div>
-        </div>
-        <div class="main">
-            <div class="image">
-                <div class="crop">
-                    <img src="SIP943899.jpg.rendition.largest.jpg" style="width:360px;height:480px;">
+    <div id="app_container">
+        <div class="app_wrapper">
+            <div class="app_home">
+                <div class="header">
+                    <div class="header_menu"><</div>
+                    <h1>Gaia</h1>
                 </div>
-            </div>
-            <ul class="profile" style="list-style: none;">
-                <li> name </li>
-                <li> <i> plant type </i> </li>
-                <li> device mode </li>
-            </ul>
-            <div>
-                <table style="width:100%;">
-                    <tr>
-                        <th> Temperature </th>
-                        <td> degrees Celsius </td>
-                    </tr>
-                    <tr>
-                        <th> Humidity</th>
-                        <td> Air</td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td> Soil </td>
-                    </tr>
-                    <tr>
-                        <th> Last Time Watered </th>
-                        <td> date time </td>
-                    </tr>
-                    <tr>
-                        <th> Light </th>
-                        <td> white </td>
-                        <td> setting </td>
-                    </tr>
-                    <tr>
-                        <th>   </th>
-                        <td> red </td>
-                        <td> setting </td>
-                    </tr>
-                    <tr>
-                        <th>   </th>
-                        <td> blue </td>
-                        <td> setting </td>
-                    </tr>
-                </table>
+     
+                
+                <div class="main">
+                    
+                        <div class="image">
+                            <img src="SIP943899.jpg.rendition.largest.jpg" style="width:360px;height:480px;">
+                        </div>
+                    <div class="profileDetails">
+                        <ul style="list-style: none;">
+                            <li> name </li>
+                            <li> <i> plant type </i> </li>
+                            <li> device mode </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <table class="tableEntry" style="width:100%; height:580px;">
+                            <tr>
+                                <th> Temperature </th>
+                                <td> degrees Celsius </td>
+                            </tr>
+                     
+                            <tr>
+                                <th> Humidity</th>
+                                <td> Air</td>
+                            </tr>
+                            <tr>
+                                <td>   </td>
+                                <td> Soil </td>
+                            </tr>
+                            <tr>
+                                <th> Last Time Watered </th>
+                                <td> date time </td>
+                            </tr>
+                            <tr>
+                                <th> Light </th>
+                                <td> white </td>
+                                <td> setting </td>
+                            </tr>
+                            <tr>
+                                <th>   </th>
+                                <td> red </td>
+                                <td> setting </td>
+                            </tr>
+                            <tr>
+                                <th>   </th>
+                                <td> blue </td>
+                                <td> setting </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
             </div>
         </div>
-        <!--<div class="footer">
-            <table style="width:100%; padding: 0.5em;">
-                <tr class="icon">
-                    <th> <i class="fa fa-pagelines" aria-hidden="true" id="pPlant"></i>
-                    <br>    
-                    <label for="pPlant"> Pick a Plant </label>
-                    </th>
-                    <th> <i class="fa fa-newspaper-o" aria-hidden="true" id="stats"></i>
-                        <br>
-                        <label for="stats"> Detailed Stats </label>
-                    </th>
-                    <th> <i class="fa fa-cog" aria-hidden="true" id="settings"></i>
-                        <br>
-                        <label for="settings"> Settings </label>
-                    </th>
-                </tr>
-            </table>-->
-</div>
-    </div>
+        </div>
+
 </body>
