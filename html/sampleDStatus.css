@@ -1,0 +1,66 @@
+﻿body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+.pageTitle {
+    height: 50px;
+    margin-left: 50px;
+    background-color: yellow;  
+    line-height: 50px;
+}
+
+.backButton {
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    color: yellow;
+    text-align: center;
+    float: left;
+    line-height: 10px;
+}
+
+.image {
+    float: left;
+    max-width: 400px;
+    margin: 0;
+    padding: 1em;
+}
+
+.profile {
+    margin-left: 350px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    background-color: #e8b4e7;
+}
+
+.crop {
+    width: 304px;
+    height: 228px;
+    overflow: hidden;
+}
+
+.footer {
+   position:fixed;
+   bottom:0;
+   width:100%;
+   height:50px;  
+   background-color:yellow;
+   padding-bottom:0.5em;
+}
+
+.container {
+   min-height:100%;
+   position:relative;
+}
+
+.main {
+   padding:10px;
+   padding-bottom:50px;
+}
+
+.icon {
+    color: green;
+    font-size: 1.1em;
+}
