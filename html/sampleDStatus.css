@@ -29,11 +29,16 @@
 }
 
 .profileDetails {
-    margin-left: 430px;
-    margin-top: -230px;
+    margin-left: 450px;
+    margin-top: -330px;
     border-left: 1px solid gray;
     padding: 1em;
     
+}
+
+.waterLevel {
+    margin-left: 450px;
+    padding: 1em;
 }
 
 .crop {
