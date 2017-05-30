@@ -2,7 +2,7 @@
 .app_plant_selection .plantselectiondescription {
   padding-left: 20px;
   font-size: 50px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   height: 150px;
   background-color: #85e085;
 }
@@ -29,6 +29,12 @@
 
 .myrow .col {
   float:left;
+}
+
+.selectedrow {
+  color: yellow;
+  background-color: b33c00;
+  opacity: 0.6;
 }
 
 .selectmark{

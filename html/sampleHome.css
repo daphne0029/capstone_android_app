@@ -20,11 +20,12 @@ body {
   line-height: 150px;
   font-size: 100px;
   color:green
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .header .header_menu {
   height: 150px;
   width: 150px;
+  font-size: 100px;
   background-color: #33adff; /*blue*/
   position: absolute;
   left: 0px;
@@ -41,7 +42,7 @@ body {
   padding-top: 30px;
   padding-bottom: 50px;
   padding-left: 10px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .btn {
@@ -59,7 +60,7 @@ body {
 
 .species {
   padding-left: 10px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 /* *************************** BODY *****************************/
@@ -93,7 +94,7 @@ body {
   font-size: 80;
   /*background-color: #ffff99;*/
   position: absolute;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .body .air_humidity {
@@ -104,7 +105,7 @@ body {
   font-size: 80px;
   /*background-color: #ffff99;*/
   position: absolute;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .body .soil_humidity {
@@ -115,7 +116,7 @@ body {
   font-size: 80px;
   /*background-color: #ffff99;*/
   position: absolute;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .profile_img{
@@ -166,7 +167,7 @@ body {
   margin: 0 auto;
   display: block;
   padding-top: 15px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-weight: bold;
   color: green;
 }
