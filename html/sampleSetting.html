@@ -17,37 +17,39 @@
 
                 <div class="main">
                         
-                    <div id="manualButton" style="padding-top: 100px;">
-                        <label style="margin-left: 70px;"> Manual Mode </label>
+                    <div id="manualButton" class="toggleSection">
+                        <label class="toggleLabel"> Manual Mode </label>
                         
-                        <label style="float: right; margin-right: 70px;" class="switch">
+                        <label class="switch toggleSide">
                             <input type="checkbox">
                             <div class="slider round"></div>
                         </label>
                     </div>
                     
-                    <div id="blueLight" style="padding-top: 100px;">
-                        <label style="margin-left: 70px;"> Blue Light </label>
+                    <div id="blueLight" class="toggleSection">
+                        <label class="toggleLabel"> Blue Light </label>
 
-                        <label style="float: right; margin-right: 70px;" class="switch">
+                        <label class="switch toggleSide">
                             <input type="checkbox" disabled="disabled">
                             <div class="slider round"></div>
                         </label>
                     </div>
 
-                    <div id="redLight" style="padding-top: 100px;">
-                        <label style="margin-left: 70px;"> Red Light </label>
+                    <div id="redLight" class="toggleSection">
+                        <label class="toggleLabel"> Red Light </label>
 
-                        <label style="float: right; margin-right: 70px;" class="switch">
+                        <label class="switch toggleSide">
                             <input type="checkbox" disabled="disabled">
                             <div class="slider round"></div>
                         </label>
                     </div>
-                    <div style="padding-top: 100px; margin-left: 70px;">
-                        <p style="width: 450px;"><i>the watering button will have a 30 second delay time between waterings</i></p>
-                        <input id="wateringBtn" style="padding-top: 50px; margin: auto; display: block;" type="image" src="wateringcan.png" />
-                        <p style="text-align: center;"> Watering </p>
-                    </div>
+                    <div class="toggleLabel toggleSection">
+                        <p><i>the watering button will have a 30 second delay time between waterings</i></p>
+                        
+                        <input type="image" style="padding-top: 50px; margin: auto; display: block;" src="wateringcan.png" />
+                       
+                        <p class="buttonLabel"> Watering </p>
+</div>
                  </div>
             </div>
 

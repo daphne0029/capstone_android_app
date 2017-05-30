@@ -19,8 +19,8 @@ body {
   text-align: center;
   line-height: 150px;
   font-size: 100px;
-  color:green
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  color:green;
+  font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
 }
 .header .header_menu {
   height: 150px;
