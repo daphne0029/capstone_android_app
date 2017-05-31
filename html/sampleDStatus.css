@@ -7,7 +7,7 @@
 .pageTitle {
     height: 50px;
     margin-left: 50px;
-    background-color: yellow;  
+    background-color: yellow;
     line-height: 50px;
 }
 
@@ -25,7 +25,7 @@
     padding: 2em;
     max-width: 400px;
     margin: 0;
-   
+
 }
 
 .profileDetails {
@@ -33,7 +33,7 @@
     margin-top: -330px;
     border-left: 1px solid gray;
     padding: 1em;
-    
+
 }
 
 .waterLevel {
@@ -47,14 +47,7 @@
     overflow: hidden;
 }
 
-.footer {
-   position:fixed;
-   bottom:0;
-   width:100%;
-   height:50px;  
-   background-color:yellow;
-   padding-bottom:0.5em;
-}
+
 
 .container {
    height:1400px;

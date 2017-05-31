@@ -31,14 +31,18 @@ body {
   left: 0px;
 }
 
+#home .header_menu {
+  display:none;
+}
+
 /* *************************** PROFILE *****************************/
-.app_home .profile {
+.profile {
   font-size: 50px;
   height: 250px;
   background-color: #85e085; /*green*/
 }
 
-.app_home .profile #nickname {
+.profile #nickname {
   padding-top: 30px;
   padding-bottom: 50px;
   padding-left: 10px;
