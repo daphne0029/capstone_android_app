@@ -33,7 +33,12 @@
     margin-top: -330px;
     border-left: 1px solid gray;
     padding: 1em;
+}
 
+.listAppearance {
+    list-style: none;
+    font-size: 30px;
+    font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
 }
 
 .waterLevel {
@@ -46,8 +51,6 @@
     height: 228px;
     overflow: hidden;
 }
-
-
 
 .container {
    height:1400px;
@@ -63,4 +66,8 @@
 
 .tableEntry {
     font-size: 25px;
+}
+
+.styleFont {
+    font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
 }
