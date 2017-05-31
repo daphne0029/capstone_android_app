@@ -58,6 +58,9 @@
     $('.home_detail_stats').click(function(){
       myApp.goTo('status');
     });
+    $('.home_settings').click(function(){
+      myApp.goTo('setting');
+    });
     $('#enter').click(function(){
       console.log('enter');
       var nickname = $('input[name="Nickname"]').val();
