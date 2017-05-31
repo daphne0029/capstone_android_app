@@ -19,13 +19,7 @@ body {
   text-align: center;
   line-height: 150px;
   font-size: 100px;
-<<<<<<< HEAD
-  color:green
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-=======
-  color:green;
-  font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
->>>>>>> 08040ea7517c00173adce0b329fba4b47d7175a8
 }
 .header .header_menu {
   height: 150px;
@@ -34,6 +28,9 @@ body {
   background-color: #33adff; /*blue*/
   position: absolute;
   left: 0px;
+}
+.header .header_menu:active{
+  background-color:gray;
 }
 
 #home .header_menu {

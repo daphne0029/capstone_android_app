@@ -54,15 +54,19 @@
 
     $('.home_select_plant').click(function(){
       myApp.goTo('plant');
+      console.log("going to plant selection page");
     });
     $('.home_detail_stats').click(function(){
       myApp.goTo('status');
+      console.log("going to detail status page");
     });
     $('.home_settings').click(function(){
       myApp.goTo('setting');
+      console.log("going to setting page");
     });
+
     $('#enter').click(function(){
-      console.log('enter');
+      console.log('user pressed enter');
       var nickname = $('input[name="Nickname"]').val();
       console.log('nickname: ' + nickname);
       data.nickname = nickname;

@@ -64,7 +64,7 @@
     var view = `
             <div class="header">
                 <div class="header_menu"><</div>
-                <h1 style="font-family: Comic Sans, cursive, sans-serif;">${title}</h1>
+                <h1>${title}</h1>
             </div>
     `;
     return view;
