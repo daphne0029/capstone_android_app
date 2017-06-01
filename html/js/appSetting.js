@@ -6,7 +6,41 @@
     console.log("building setting view");
     var view = '<div id="setting" class="app_wrapper">';
     view += myApp.buildHeaderView('Setting');
-    //view += ``;
+    view += `<div class="main">
+
+        <div id="manualButton" class="toggleSection">
+            <label class="toggleLabel"> Manual Mode </label>
+
+            <label class="switch toggleSide">
+                <input type="checkbox">
+                <div class="slider round"></div>
+            </label>
+        </div>
+
+        <div id="blueLight" class="toggleSection">
+            <label class="toggleLabel"> Blue Light </label>
+
+            <label class="switch toggleSide">
+                <input type="checkbox" disabled="disabled">
+                <div class="slider round"></div>
+            </label>
+        </div>
+
+        <div id="redLight" class="toggleSection">
+            <label class="toggleLabel"> Red Light </label>
+
+            <label class="switch toggleSide">
+                <input type="checkbox" disabled="disabled">
+                <div class="slider round"></div>
+            </label>
+        </div>
+        <div class="toggleLabel toggleSection">
+            <p><i>the watering button will have a 30 second delay time between waterings</i></p>
+            <input class="wateringimg" type="image" src="wateringcan.png" />
+            <br>
+            <p class="buttonLabel"> Press the image to water your plant! </p>
+        </div>
+     </div>`;
 
     view += '</div>';
     console.log(view);

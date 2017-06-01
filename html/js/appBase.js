@@ -63,7 +63,9 @@
   myApp.buildHeaderView = function(title){
     var view = `
             <div class="header">
-                <div class="header_menu"><</div>
+                <div class="header_menu">
+                  <i class="header_icon fa fa-chevron-left" aria-hidden="true"></i>
+                </div>
                 <h1>${title}</h1>
             </div>
     `;

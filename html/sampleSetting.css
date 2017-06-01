@@ -69,7 +69,7 @@ input:checked + .slider:before {
 
 .toggleSide {
     float: right;
-    margin-right: 70px; 
+    margin-right: 70px;
 }
 
 .toggleSection {
@@ -79,8 +79,18 @@ input:checked + .slider:before {
 .toggleLabel {
     margin-left: 70px;
 }
-.waterWarning {
+/*.waterWarning {
     width: 450px;
+}*/
+
+.wateringimg {
+  padding-top: 50px;
+  margin: auto;
+  display: block;
+}
+
+.wateringimg:active{
+  transform: translateY(4px);
 }
 
 .buttonLabel {

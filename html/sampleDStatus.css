@@ -28,6 +28,10 @@
 
 }
 
+  .rowheader{
+    text-align: center;
+  }
+
 .profileDetails {
     margin-left: 450px;
     margin-top: -330px;
