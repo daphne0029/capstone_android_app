@@ -44,7 +44,7 @@
 
     view += '</div>';
     view += '</div>';
-    console.log(view);
+    //console.log(view);
     return view;
   };
 

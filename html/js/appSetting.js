@@ -12,7 +12,7 @@
             <label class="toggleLabel"> Manual Mode </label>
 
             <label class="switch toggleSide">
-                <input type="checkbox">
+                <input class="messageCheckbox" type="checkbox">
                 <div class="slider round"></div>
             </label>
         </div>
@@ -21,7 +21,7 @@
             <label class="toggleLabel"> Blue Light </label>
 
             <label class="switch toggleSide">
-                <input type="checkbox" disabled="disabled">
+                <input class="messageCheckbox" type="checkbox" disabled>
                 <div class="slider round"></div>
             </label>
         </div>
@@ -30,7 +30,7 @@
             <label class="toggleLabel"> Red Light </label>
 
             <label class="switch toggleSide">
-                <input type="checkbox" disabled="disabled">
+                <input class="messageCheckbox" type="checkbox" disabled="disabled">
                 <div class="slider round"></div>
             </label>
         </div>
@@ -52,6 +52,18 @@
     $('.header_menu').click(function(){
       myApp.goTo('home');
       console.log("going back to home page");
+    });
+    $(".messageCheckbox","#manualButton").click(function(){
+      console.log('user turning on manual mode');
+      var manualMode = $(".messageCheckbox:checked","#manualButton").val();
+      if(manualMode == 'on'){
+        $(".messageCheckbox","#blueLight").removeAttr('disabled');
+        $(".messageCheckbox","#redLight").removeAttr('disabled');
+      }else{
+        $(".messageCheckbox","#blueLight").attr('disabled','disabled');
+        $(".messageCheckbox","#redLight").attr('disabled','disabled');
+      }
+
     });
 
   };

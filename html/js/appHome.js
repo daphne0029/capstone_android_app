@@ -3,6 +3,12 @@
 
 }(function(myApp){
   var data = myApp.data;
+  data.selectedPlant.commonName = "Lily";
+  data.selectedPlant.profileImg = "lily2.jpg";
+  data.backEndData.temperature = "17.5" + "&deg;C";
+  data.backEndData.airHunidity = "35%";
+  data.backEndData.soilHumidity = "Dry";
+
   var homeView = function() {
     var view = '<div id="home" class="app_wrapper">';
     view += myApp.buildHeaderView('Home');
@@ -14,18 +20,18 @@
         <input class="form-control" type="text" name="Nickname">
         <button id="enter" type="button" class="button1 btn btn-success" style="outline: none;">Enter</button>
       </div>
-      <div class="species">Growing: Rose</div>
+      <div class="species">Growing: ${data.selectedPlant.commonName}</div>
     </div>
     <div class="body">
       <div class="circle_title">
         <img class="profile_circle_img" src="profile_circle_large.png" alt="body_circle">
       </div>
       <div class="profile_pic">
-        <img class="profile_img" src="rose1.jpg" alt="rose">
+        <img class="profile_img" src="${data.selectedPlant.profileImg}" alt="rose">
       </div>
-      <div class="temperature"> 18&deg;C</div>
-      <div class="air_humidity"> 45% </div>
-      <div class="soil_humidity"> Wet </div>
+      <div class="temperature"> ${data.backEndData.temperature}</div>
+      <div class="air_humidity"> ${data.backEndData.airHunidity} </div>
+      <div class="soil_humidity"> ${data.backEndData.soilHumidity} </div>
     </div>
     <div class="footer">
       <div>

@@ -7,8 +7,23 @@
   };
   var data = {
     nickname : '',
-    backEndData : {},
+    backEndData : {
+      "temperature" : "",
+      "airHunidity" : "",
+      "soilHumidity" : ""
+    },
     backEndDataString : '',
+    selectedPlant : {
+      "commonName" : "",
+      "species" : "",
+      "watering" : "",
+      "lightingMin" : "",
+      "lightingMax" : "",
+      "humidity" : "",
+      "temperatureLow" : "",
+      "temperatureHigh" : "",
+      "profileImg" : ""
+    },
   };
   var control = {
     home : {
