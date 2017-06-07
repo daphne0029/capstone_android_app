@@ -87,10 +87,12 @@ input:checked + .slider:before {
   padding-top: 50px;
   margin: auto;
   display: block;
+  outline: none;
 }
 
 .wateringimg:active{
   transform: translateY(4px);
+  outline: none;
 }
 
 .buttonLabel {

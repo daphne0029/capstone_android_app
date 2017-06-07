@@ -18,6 +18,9 @@
     console.log("building plant view");
     var view = '<div id="plant" class="app_wrapper">';
     view += myApp.buildHeaderView('Plant Selection');
+    view +=  `      <div class="plantselectiondescription">
+            Select a plant type you want to grow.
+          </div>`;
     view += '<div class="psd_planttable">';
 
     //Auto generate rows
@@ -51,7 +54,12 @@
       myApp.goTo('home');
       console.log("going back to home page");
     });
-
+    $('.myrow').click(function(){
+      $('.myrow').not(this).removeClass('selectedrow');
+      $(this).addClass('selectedrow');
+      $('.SelectMark').not(this).text('-');
+      $('.SelectMark',this).text('v');
+    });
   };
 
   myApp.control.plant.view.push(plantView);

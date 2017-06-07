@@ -10,8 +10,9 @@
     <div class="profile">
       <div id="nickname" >
         Nickname:
+        <span id="nicknametext"></span>
         <input class="form-control" type="text" name="Nickname">
-        <button id="enter" type="button" class="button1 btn btn-success">Enter</button>
+        <button id="enter" type="button" class="button1 btn btn-success" style="outline: none;">Enter</button>
       </div>
       <div class="species">Growing: Rose</div>
     </div>
@@ -44,7 +45,7 @@
     </div>
     </div>
     `;
-    view += '<div class="home"> home view</div>';
+    //view += '<div class="home"> home view</div>';
     return view;
   };
 
@@ -70,7 +71,19 @@
       var nickname = $('input[name="Nickname"]').val();
       console.log('nickname: ' + nickname);
       data.nickname = nickname;
+      if (nickname.length > 0){
+        $('input[name="Nickname"]').hide();
+        $('.button1').hide();
+        $('#nicknametext').append(nickname);
+      }
     });
+    $('#nicknametext').click(function(){
+      console.log('changing nickname');
+      $('#nicknametext').empty();
+      $('input[name="Nickname"]').show();
+      $('.button1').show();
+    });
+
   };
 
   myApp.control.home.view.push(homeView);
