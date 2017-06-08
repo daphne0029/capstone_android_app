@@ -4,6 +4,8 @@
 }(function(myApp){
   var data = myApp.data;
   var i;
+
+  /*
   var testdata = {
     name : [],
     latinname : [],
@@ -13,6 +15,7 @@
   testdata.name = ['Rose','Lily','asfsd','aaaaa'];
   testdata.latinname = ['Rosa rubiginosa','Lilium candidum','wwwwwwwww','bbbbb'];
   testdata.imgSrc = ['rose1.jpg','lily2.jpg','lily2.jpg','lily2.jpg'];
+*/
 
   var plantView = function() {
     console.log("building plant view");

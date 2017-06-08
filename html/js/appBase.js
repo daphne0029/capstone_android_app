@@ -5,8 +5,11 @@
   var config = {
     appContainerId : "default_app_container"
   };
+
+
   var data = {
     nickname : '',
+    plantsInfo : [],
     backEndData : {
       "temperature" : "",
       "airHunidity" : "",
@@ -85,7 +88,26 @@
             </div>
     `;
     return view;
-  }
+  };
+
+  myApp.getData = function(callback) {
+    $.ajax({
+  	    type: "get",
+  	    url: "http://capstone.local/ajax/data.php",
+  	    data: {'function' : 'initialLoad'},
+  	    dataType: 'json',
+  	    success: function(response){
+          if (response.status > 0) {
+            data.plantsInfo = response.data.plantSpecs;
+            if (typeof(callback) == 'function'){
+              callback();
+            }
+          } else {
+            //handle error
+          }
+  	    }
+  	});
+  };
   /*
   myApp.buildView = function() {
 
@@ -173,7 +195,10 @@
     //myApp.bindEvents();
 
     console.log('initializing ... ');
-    myApp.init();
+    myApp.getData(function(){
+      myApp.init();
+    });
+
 /*
     var name = 'lonelymonkey';
     var num = 10;

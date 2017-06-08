@@ -1,0 +1,104 @@
+{
+  "plantsArray" : [
+    {
+      "commonName": "Camellia",
+      "species": "Camellia japonica",
+      "watering": "30%",
+      "lightingMin": "10000",
+      "lightingMax": "20000",
+      "humidity": "70%",
+      "temperatureLow": "26",
+      "temperatureHigh": "15"
+    },
+    {
+      "commonName": "Peony",
+      "species": "Paeonia lactiflora",
+      "watering": "30%",
+      "lightingMin": "20000",
+      "lightingMax": "38000",
+      "humidity": "45%",
+      "temperatureLow": "16",
+      "temperatureHigh": "20"
+    },
+    {
+      "commonName": "Lily",
+      "species": "Lilium candidum",
+      "watering": "80%",
+      "lightingMin": "15000",
+      "lightingMax": "20000",
+      "humidity": "70%",
+      "temperatureLow": "23",
+      "temperatureHigh": "15"
+    },
+    {
+      "commonName": "Lavender",
+      "species": "Lavandula angustifolia",
+      "watering": "80%",
+      "lightingMin": "20000",
+      "lightingMax": "38000",
+      "humidity": "70%",
+      "temperatureLow": "15",
+      "temperatureHigh": "25"
+    },
+    {
+      "commonName": "Weed",
+      "species": "Cannabis Stativa",
+      "watering": "75%",
+      "lightingMin": "15000",
+      "lightingMax": "50000",
+      "humidity": "50%",
+      "temperatureLow": "19",
+      "temperatureHigh": "25"
+    },
+    {
+      "commonName": "Tulip",
+      "species": "Tulipa gesneriana",
+      "watering": "80%",
+      "lightingMin": "15000",
+      "lightingMax": "20000",
+      "humidity": "80%",
+      "temperatureLow": "20",
+      "temperatureHigh": "25"
+    },
+    {
+      "commonName": "Orchid",
+      "species": "Phalaenopsis sanderiana",
+      "watering": "40%",
+      "lightingMin": "15000",
+      "lightingMax": "20000",
+      "humidity": "65%",
+      "temperatureLow": "18",
+      "temperatureHigh": "30"
+    },
+    {
+      "commonName": "Basil",
+      "species": "Ocimum basilicum",
+      "watering": "70%",
+      "lightingMin": "10000",
+      "lightingMax": "25000",
+      "humidity": "40%",
+      "temperatureLow": "18",
+      "temperatureHigh": "29"
+    },
+    {
+      "commonName": "Parsley",
+      "species": "Petroselinum crispum",
+      "watering": "80%",
+      "lightingMax": "25000",
+      "lightingMin": "10000",
+      "humidity": "40%",
+      "temperatureHigh": "27",
+      "temperatureLow": "16"
+    },
+    {
+      "commonName": "Thyme",
+      "species": "Thymus vulgaris",
+      "watering": "30%",
+      "lightingMin": "10000",
+      "lightingMax": "25000",
+      "humidity": "40%",
+      "temperatureLow": "16",
+      "temperatureHigh": "21"
+    }
+  ]
+}
