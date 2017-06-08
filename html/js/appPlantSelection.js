@@ -5,8 +5,9 @@
   var data = myApp.data;
   var i;
 
-  /*
-  var testdata = {
+  //console.log("HELLO");
+/*
+    var testdata = {
     name : [],
     latinname : [],
     imgSrc : [],
@@ -18,6 +19,7 @@
 */
 
   var plantView = function() {
+    console.log(data.plantsInfo.plantsArray[0].commonName);
     console.log("building plant view");
     var view = '<div id="plant" class="app_wrapper">';
     view += myApp.buildHeaderView('Plant Selection');
@@ -27,19 +29,19 @@
     view += '<div class="psd_planttable">';
 
     //Auto generate rows
-    for(i = 0 ; i < testdata.name.length ; i++){
-      console.log("name[" + i + "] = " + testdata.name[i]);
+    for(i = 0 ; i < data.plantsInfo.plantsArray.length ; i++){
+      //console.log("name[" + i + "] = " + testdata.name[i]);
       view += `        <div class="myrow">
                 <div class="col SelectMark">
                   -
                 </div>
                 <div class="col psd_profile_pic">
-                  <img class="small_profile_pic" src="${testdata.imgSrc[i]}" alt="rose">
+                  <img class="small_profile_pic" src="${data.plantsInfo.plantsArray[i].profileImg}">
                 </div>
                 <div class="col psd_name">
-                  ${testdata.name[i]}
+                  ${data.plantsInfo.plantsArray[i].commonName}
                   <div class="latinname">
-                    ${testdata.latinname[i]}
+                    ${data.plantsInfo.plantsArray[i].species}
                   </div>
                 </div>
               </div>`;

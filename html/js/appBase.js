@@ -9,7 +9,9 @@
 
   var data = {
     nickname : '',
-    plantsInfo : [],
+    plantsInfo : {
+      plantsArray : []
+    },
     backEndData : {
       "temperature" : "",
       "airHunidity" : "",

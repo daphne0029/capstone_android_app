@@ -8,7 +8,8 @@
       "lightingMax": "20000",
       "humidity": "70%",
       "temperatureLow": "26",
-      "temperatureHigh": "15"
+      "temperatureHigh": "15",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Peony",
@@ -18,7 +19,8 @@
       "lightingMax": "38000",
       "humidity": "45%",
       "temperatureLow": "16",
-      "temperatureHigh": "20"
+      "temperatureHigh": "20",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Lily",
@@ -28,7 +30,8 @@
       "lightingMax": "20000",
       "humidity": "70%",
       "temperatureLow": "23",
-      "temperatureHigh": "15"
+      "temperatureHigh": "15",
+      "profileImg" : "assets/lily2.jpg"
     },
     {
       "commonName": "Lavender",
@@ -38,7 +41,8 @@
       "lightingMax": "38000",
       "humidity": "70%",
       "temperatureLow": "15",
-      "temperatureHigh": "25"
+      "temperatureHigh": "25",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Weed",
@@ -48,7 +52,8 @@
       "lightingMax": "50000",
       "humidity": "50%",
       "temperatureLow": "19",
-      "temperatureHigh": "25"
+      "temperatureHigh": "25",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Tulip",
@@ -58,7 +63,8 @@
       "lightingMax": "20000",
       "humidity": "80%",
       "temperatureLow": "20",
-      "temperatureHigh": "25"
+      "temperatureHigh": "25",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Orchid",
@@ -68,7 +74,8 @@
       "lightingMax": "20000",
       "humidity": "65%",
       "temperatureLow": "18",
-      "temperatureHigh": "30"
+      "temperatureHigh": "30",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Basil",
@@ -78,7 +85,8 @@
       "lightingMax": "25000",
       "humidity": "40%",
       "temperatureLow": "18",
-      "temperatureHigh": "29"
+      "temperatureHigh": "29",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Parsley",
@@ -88,7 +96,8 @@
       "lightingMin": "10000",
       "humidity": "40%",
       "temperatureHigh": "27",
-      "temperatureLow": "16"
+      "temperatureLow": "16",
+      "profileImg" : "assets/rose1.jpg"
     },
     {
       "commonName": "Thyme",
@@ -98,7 +107,8 @@
       "lightingMax": "25000",
       "humidity": "40%",
       "temperatureLow": "16",
-      "temperatureHigh": "21"
+      "temperatureHigh": "21",
+      "profileImg" : "assets/rose1.jpg"
     }
   ]
 }
