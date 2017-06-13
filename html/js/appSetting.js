@@ -36,7 +36,7 @@
         </div>
         <div class="toggleLabel toggleSection">
             <p><i>the watering button will have a 30 second delay time between waterings</i></p>
-            <input class="wateringimg" type="image" src="wateringcan.png" />
+            <input class="wateringimg" type="image" src="wateringcan.png" disabled/>
             <br>
             <p class="buttonLabel"> Press the image to water your plant! </p>
         </div>
@@ -59,9 +59,13 @@
       if(manualMode == 'on'){
         $(".messageCheckbox","#blueLight").removeAttr('disabled');
         $(".messageCheckbox","#redLight").removeAttr('disabled');
+        $(".wateringimg").removeAttr('disabled');
       }else{
+        $(".messageCheckbox","#blueLight").prop('checked',false);
+        $(".messageCheckbox","#redLight").prop('checked',false);
         $(".messageCheckbox","#blueLight").attr('disabled','disabled');
         $(".messageCheckbox","#redLight").attr('disabled','disabled');
+        $(".wateringimg").attr('disabled','disabled');
       }
 
     });

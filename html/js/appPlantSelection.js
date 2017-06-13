@@ -40,6 +40,7 @@
                 </div>
                 <div class="col psd_name">
                   ${data.plantsInfo.plantsArray[i].commonName}
+                  <span class="arrayindex" style="visibility:hidden">${i}</span>
                   <div class="latinname">
                     ${data.plantsInfo.plantsArray[i].species}
                   </div>
@@ -64,6 +65,14 @@
       $(this).addClass('selectedrow');
       $('.SelectMark').not(this).text('-');
       $('.SelectMark',this).text('v');
+      var selectedindex = $('.arrayindex',this).text();
+      myApp.data.selectedPlant = data.plantsInfo.plantsArray[selectedindex];
+      console.log("picked plant = " + myApp.data.selectedPlant.commonName);
+      /*var pickedPlant = $('.latinname',this).text();
+      pickedPlant = pickedPlant.replace(/\n/,"").replace(/ /g,"_").replace(/__+/g,"").replace(/\W+$/g,"");
+      pickedPlant = pickedPlant.replace(/_/," ");
+      console.log("picked plant = " + pickedPlant + ",length = " + pickedPlant.length);*/
+    //  console.log("picked plant = " + this);
     });
   };
 

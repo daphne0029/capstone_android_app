@@ -18,17 +18,7 @@
       "soilHumidity" : ""
     },
     backEndDataString : '',
-    selectedPlant : {
-      "commonName" : "",
-      "species" : "",
-      "watering" : "",
-      "lightingMin" : "",
-      "lightingMax" : "",
-      "humidity" : "",
-      "temperatureLow" : "",
-      "temperatureHigh" : "",
-      "profileImg" : ""
-    },
+    selectedPlant : [],
   };
   var control = {
     home : {
