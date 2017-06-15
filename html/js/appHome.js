@@ -3,8 +3,8 @@
 
 }(function(myApp){
   var data = myApp.data;
-  data.selectedPlant.commonName = "Lily";
-  data.selectedPlant.profileImg = "lily2.jpg";
+  data.selectedPlant.commonName = "No plant is selected";
+  data.selectedPlant.profileImg = "assets/questionmark.jpg";
   data.backEndData.temperature = "17.5" + "&deg;C";
   data.backEndData.airHunidity = "35%";
   data.backEndData.soilHumidity = "Dry";
@@ -27,7 +27,7 @@
         <img class="profile_circle_img" src="profile_circle_large.png" alt="body_circle">
       </div>
       <div class="profile_pic">
-        <img class="profile_img" src="${data.selectedPlant.profileImg}" alt="rose">
+        <img class="profile_img" src="${data.selectedPlant.profileImg}" alt="profile_img">
       </div>
       <div class="temperature"> ${data.backEndData.temperature}</div>
       <div class="air_humidity"> ${data.backEndData.airHunidity} </div>
