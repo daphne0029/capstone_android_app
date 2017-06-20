@@ -4,23 +4,11 @@
 }(function(myApp){
   var data = myApp.data;
   var i;
-
-  //console.log("HELLO");
-/*
-    var testdata = {
-    name : [],
-    latinname : [],
-    imgSrc : [],
-  };
-
-  testdata.name = ['Rose','Lily','asfsd','aaaaa'];
-  testdata.latinname = ['Rosa rubiginosa','Lilium candidum','wwwwwwwww','bbbbb'];
-  testdata.imgSrc = ['rose1.jpg','lily2.jpg','lily2.jpg','lily2.jpg'];
-*/
-
+  
   var plantView = function() {
-    console.log(data.plantsInfo.plantsArray[0].commonName);
     console.log("building plant view");
+    var rowClass = "";
+    var mark = "";
     var view = '<div id="plant" class="app_wrapper">';
     view += myApp.buildHeaderView('Plant Selection');
     view +=  `      <div class="plantselectiondescription">
@@ -30,10 +18,16 @@
 
     //Auto generate rows
     for(i = 0 ; i < data.plantsInfo.plantsArray.length ; i++){
-      //console.log("name[" + i + "] = " + testdata.name[i]);
-      view += `        <div class="myrow">
+      if (data.plantsInfo.plantsArray[i].commonName == myApp.data.selectedPlant.commonName){
+        rowClass = "selectedrow";
+        mark = "v";
+      }else{
+        rowClass = "";
+        mark = "-";
+      };
+      view += `        <div class="myrow ${rowClass}">
                 <div class="col SelectMark">
-                  -
+                  ${mark}
                 </div>
                 <div class="col psd_profile_pic">
                   <img class="small_profile_pic" src="${data.plantsInfo.plantsArray[i].profileImg}">
@@ -61,18 +55,22 @@
       console.log("going back to home page");
     });
     $('.myrow').click(function(){
-      $('.myrow').not(this).removeClass('selectedrow');
-      $(this).addClass('selectedrow');
-      $('.SelectMark').not(this).text('-');
-      $('.SelectMark',this).text('v');
+      //Alert user that he/she is changing the setting
       var selectedindex = $('.arrayindex',this).text();
-      myApp.data.selectedPlant = data.plantsInfo.plantsArray[selectedindex];
-      console.log("picked plant = " + myApp.data.selectedPlant.commonName);
-      /*var pickedPlant = $('.latinname',this).text();
-      pickedPlant = pickedPlant.replace(/\n/,"").replace(/ /g,"_").replace(/__+/g,"").replace(/\W+$/g,"");
-      pickedPlant = pickedPlant.replace(/_/," ");
-      console.log("picked plant = " + pickedPlant + ",length = " + pickedPlant.length);*/
-    //  console.log("picked plant = " + this);
+      var confirmMSG = `Gaia is currently growing : ${myApp.data.selectedPlant.commonName}
+      Do you want to change the growing plant to ${data.plantsInfo.plantsArray[selectedindex].commonName}?` ;
+
+      if (confirm(confirmMSG) == true){
+        $('.myrow').not(this).removeClass('selectedrow');
+        $(this).addClass('selectedrow');
+        $('.SelectMark').not(this).text('-');
+        $('.SelectMark',this).text('v');
+        myApp.data.selectedPlant = data.plantsInfo.plantsArray[selectedindex];
+      }else{
+        "you press cancel";
+      };
+
+
     });
   };
 
