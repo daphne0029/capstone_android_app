@@ -8,8 +8,14 @@
   data.backEndData.temperature = "17.5" + "&deg;C";
   data.backEndData.airHunidity = "35%";
   data.backEndData.soilHumidity = "Dry";
+  var waterlvlMSG = "Below 50%";
+  var waterlvlClass = "fa-battery-half";
 
   var homeView = function() {
+
+    waterlvlClass = "fa-battery-quarter";
+    waterlvlMSG = "Below 20%";
+
     var view = '<div id="home" class="app_wrapper">';
     view += myApp.buildHeaderView('Home');
     view += `
@@ -32,6 +38,12 @@
       <div class="temperature"> ${data.backEndData.temperature}</div>
       <div class="air_humidity"> ${data.backEndData.airHunidity} </div>
       <div class="soil_humidity"> ${data.backEndData.soilHumidity} </div>
+      <div class="water_tank_stat"> Water Tank Level:
+        <div>
+          <i class="alert_led fa ${waterlvlClass}" aria-hidden="true"></i>
+          ${waterlvlMSG}
+        </div>
+      </div>
     </div>
     <div class="footer">
       <div>

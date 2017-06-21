@@ -46,13 +46,13 @@ body {
 /* *************************** PROFILE *****************************/
 .profile {
   font-size: 50px;
-  height: 250px;
+  height: 200px;
   background-color: #85e085; /*green*/
 }
 
 .profile #nickname {
-  padding-top: 30px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 20px;
   padding-left: 10px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
@@ -84,7 +84,7 @@ body {
 
 /* *************************** BODY *****************************/
 .body {
-  height: 750px;
+  height: 800px;
   background-color: #85e085 ;
 }
 
@@ -107,7 +107,7 @@ body {
 
 .body .temperature {
   margin-top: 45px;
-  margin-left: 45px;
+  margin-left: 30px;
   height: 100px;
   width: 200px;
   font-size: 80;
@@ -152,6 +152,19 @@ body {
   border-radius: 50%;
   max-height: 600px;
   max-width: 600px;
+}
+
+.body .water_tank_stat{
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 650px;
+  display: block;
+  position: absolute;
+}
+
+.alert_led{
+  color: red;
+  transform: rotate(270deg);
 }
 
 /* *************************** FOOTER *****************************/
