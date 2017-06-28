@@ -18,12 +18,41 @@ class dataService {
     return $output;
   }
   public function report($data) {
-    //Load the previous report, compare changes, then overwrite the report file
+    //Load the previous report
+    //compare changes + write to log file
+    //overwrite (save) the report file
     $this->updatereport($data);
 
-    echo "hello world";
+    $returnData = array(
+      "status" => 1,
+      "profile" => array(
+        "commonName" => "",
+        "autoMode" => true,
+        "day" => true,
+        "lastTimeWater" => date("Y-m-d H:i:s")
+      ),
+      "action" => array(
+        "pump" => false,
+        "heat" => false,
+        "lightB" => false,
+        "lightR "=> false
+      )
+    );
 
-    return $data;//has to be a php array
+    //check if time is night time, after 21:00 and before 05:00
+    if ((int)date("H") >= 21 || (int)date("H") <= 5 ){
+      echo "Current hour = " . date("H") . "<br>";
+      echo "Light shoulf be off! <br>";
+      $returnData["profile"]["day"] = false;
+    };
+
+    //check if the pump status is true, if yes then save a timestamp
+    if ($data["status"]["pumping"] == true){
+      $returnData["profile"]["lastTimeWater"] = date("Y-m-d H:i:s");
+    };
+
+
+    return $returnData;//has to be a php array
   }
   public function updatereport($data){
   //Load the previous report
@@ -31,7 +60,7 @@ class dataService {
   //overwrite the report file
     $preReport = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $diff["waterTankLevel"] = array_diff_assoc($data["waterTankLevel"], $preReport["waterTankLevel"]);
-    $diff["reading"] = array_diff_assoc($data["reading"], $preReport["reading"]);
+    //$diff["reading"] = array_diff_assoc($data["reading"], $preReport["reading"]);
     $diff["status"] = array_diff_assoc($data["status"], $preReport["status"]);
     //write the difference of the 2 reports to the log file
     $LOG = fopen(INCLUDE_PATH . "/log.txt", "r+") or die("Unable to open log.txt!");
@@ -48,8 +77,10 @@ class dataService {
     //append a new element to the logarray
     $logarray[] = array(
       'timestamp' => date("Y-m-d H:i:s"),
-      'status' => array($diff["status"]),
-      'waterTankLevel' => array($diff["waterTankLevel"])
+      'action' => array($diff["status"]),
+      'status' => array($data["status"]),
+      'waterTankLevel' => array($data["waterTankLevel"]),
+      'reading' => array($data["reading"])
     );
     //only update if STATUS changes
     if (empty($diff["status"])){

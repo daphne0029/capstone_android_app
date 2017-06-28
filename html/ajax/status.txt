@@ -1,24 +1,25 @@
 //microprocessor's report
 {
-  "status" : {
-    "pumping": false,
-    "heating": false,
-    "LightW" : "Low",
-    "LightB" : false,
-    "LightR" : false,
-    "waterTankLevel" :{
-      "below50": true,
-      "below20": false,
-      "empty": false,
+  "status":{
+    "pumping":false,
+    "heating":false,
+    "LightW":"off",
+    "LightB":false,
+    "LightR":false
     },
-  },
-  "reading" : {
-    "temperature" : 27.1,
-    "airHumidity" : 40.5,
-    "soilHumidity" : 10.3,
-    "lux" : 10000,
+    "waterTankLevel":{
+      "below50":false,
+      "below20":false,
+      "empty":false
+    },
+    "reading":{
+      "temperature":0.0,
+      "airHumidity":0.0,
+      "soilHumidity":0.0,
+      "lux":0
+    }
   }
-}
+
 
 //server return
 {
@@ -33,7 +34,7 @@
     "pump": true,
     "heat": false,
     "lightB": true,
-    "lightR": true,
+    "lightR": true
   }
   }
 }

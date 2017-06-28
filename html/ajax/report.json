@@ -1,1 +1,10 @@
-{"status":{"pumping":true,"heating":false,"LightW":"low","LightB":false,"LightR":false},"waterTankLevel":{"below50":false,"below20":false,"empty":false},"reading":{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}}
+{"status":{"pumping":false,"heating":false,"LightW":"Low","LightB":true,"LightR":false},"waterTankLevel":{"below50":true,"below20":false,"empty":false},"reading":{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}}
+
+
+
+{	  "timestamp":"2017-06-27 22:27:21",
+    "action":[{"pumping":false,"heating":false}],
+		"status":[{"pumping":false,"heating":false,"LightW":"Low","LightB":true,"LightR":false}],
+		"waterTankLevel":[{"below50":true,"below20":false,"empty":false}],
+		"reading":[{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}]
+}
