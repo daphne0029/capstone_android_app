@@ -4,7 +4,7 @@
 }(function(myApp){
   var data = myApp.data;
   var i;
-  
+
   var plantView = function() {
     console.log("building plant view");
     var rowClass = "";
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col psd_name">
                   ${data.plantsInfo.plantsArray[i].commonName}
-                  <span class="arrayindex" style="visibility:hidden">${i}</span>
+                  <span class="arrayindex" style="display: none">${i}</span>
                   <div class="latinname">
                     ${data.plantsInfo.plantsArray[i].species}
                   </div>

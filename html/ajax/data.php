@@ -6,7 +6,28 @@ $response = array(
     'status' => 1
 );
 
+$data = array(
+  'status' => array(
+    "pumping" =>  false,
+    "heating"=> true,
+    "LightW" => "Low",
+    "LightB" => false,
+    "LightR" => false
+  ),
+  "waterTankLevel" => array(
+    "below50"=> true,
+    "below20"=> false,
+    "empty"=> false
+  ),
+  "reading" => array(
+    "temperature" => 27.1,
+    "airHumidity" => 40.5,
+    "soilHumidity" => 10.3,
+    "lux" => 10000
+  )
+);
 
+//echo json_encode($data);
 
 
 try {
@@ -18,6 +39,9 @@ try {
 
       if (!empty($_GET['data'])) {
         $data = $_GET['data'];
+      /*  echo '<pre>';
+        var_dump($data);
+        echo '</pre>';*/
         $data = json_decode($data,true);
         $response['data'] = $service->{$_GET['function']}($data);
       } else {

@@ -1,0 +1,39 @@
+//microprocessor's report
+{
+  "status" : {
+    "pumping": false,
+    "heating": false,
+    "LightW" : "Low",
+    "LightB" : false,
+    "LightR" : false,
+    "waterTankLevel" :{
+      "below50": true,
+      "below20": false,
+      "empty": false,
+    },
+  },
+  "reading" : {
+    "temperature" : 27.1,
+    "airHumidity" : 40.5,
+    "soilHumidity" : 10.3,
+    "lux" : 10000,
+  }
+}
+
+//server return
+{
+  "status" : 1,
+  "profile": {
+    "commonName" : "Lily",
+    "autoMode" : true,
+    "day": true,
+    "lastTimeWater": "2017-09-09 19:11:12"
+  },
+  "action": {
+    "pump": true,
+    "heat": false,
+    "lightB": true,
+    "lightR": true,
+  }
+  }
+}

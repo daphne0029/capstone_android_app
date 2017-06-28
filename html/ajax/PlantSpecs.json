@@ -7,8 +7,8 @@
       "lightingMin": "10000",
       "lightingMax": "20000",
       "humidity": "70%",
-      "temperatureLow": "26",
-      "temperatureHigh": "15",
+      "temperatureLow": "15",
+      "temperatureHigh": "26",
       "profileImg" : "assets/Camellia.jpg"
     },
     {
@@ -29,8 +29,8 @@
       "lightingMin": "15000",
       "lightingMax": "20000",
       "humidity": "70%",
-      "temperatureLow": "23",
-      "temperatureHigh": "15",
+      "temperatureLow": "15",
+      "temperatureHigh": "23",
       "profileImg" : "assets/lily2.jpg"
     },
     {
@@ -95,8 +95,8 @@
       "lightingMax": "25000",
       "lightingMin": "10000",
       "humidity": "40%",
-      "temperatureHigh": "27",
       "temperatureLow": "16",
+      "temperatureHigh": "27",
       "profileImg" : "assets/parsley.jpg"
     },
     {
