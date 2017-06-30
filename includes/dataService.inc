@@ -23,21 +23,48 @@ class dataService {
     //overwrite (save) the report file
     $this->updatereport($data);
 
+    $returnData = $this->getReturnInfo($data);
+
+
+
+    return $returnData;//has to be a php array
+  }
+  public function getReturnInfo($data){
     $returnData = array(
       "status" => 1,
       "profile" => array(
-        "commonName" => "",
         "autoMode" => true,
         "day" => true,
-        "lastTimeWater" => date("Y-m-d H:i:s")
+        "lastTimeWater" => "yyyy-mm-dd 24HH:MI:SS"
       ),
       "action" => array(
         "pump" => false,
         "heat" => false,
         "lightB" => false,
         "lightR "=> false
+      ),
+      "growing" => array(
+        "commonName" => "Unknown",
+        "species" => "Unknown",
+        "watering" => "Unknown",
+        "lightingMin" => "Unknown",
+        "lightingMax"=> "Unknown",
+        "humidity" => "Unknown",
+        "temperatureLow" => "Unknown",
+        "temperatureHigh" => "Unknown",
+        "profileImg" => "Unknown"
       )
     );
+
+    //Load selected plant parameters
+    //read appdata from database
+    $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $appData = $serverdatabase["appdata"];
+    $plantid = $appData["selectedid"];
+    $plantspecs = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
+    $returnData["growing"] = $plantspecs["plantsArray"][$plantid];
+
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
     //check if time is night time, after 21:00 and before 05:00
     if ((int)date("H") >= 21 || (int)date("H") <= 5 ){
@@ -47,20 +74,34 @@ class dataService {
     };
 
     //check if the pump status is true, if yes then save a timestamp
+    echo "<pre>";
+    var_dump($data["status"]["pumping"] == true);
+    echo "</pre>";
     if ($data["status"]["pumping"] == true){
       $returnData["profile"]["lastTimeWater"] = date("Y-m-d H:i:s");
+      $serverdatabase["appdata"]["lastTimeWater"] = $returnData["profile"]["lastTimeWater"];
+    }else{
+      $returnData["profile"]["lastTimeWater"] = $appData["lastTimeWater"];
     };
 
+    $fdata = json_encode($serverdatabase);
+    fwrite($fdatabase, $fdata);
+    fclose($fdatabase);
+    echo "String length = ".strlen("GET api.translink.ca/RTTIAPI/V1/stops/55612?apiKey=VNx2JURfTo6Cm0Gd8qu5");
 
-    return $returnData;//has to be a php array
+    return $returnData;
   }
   public function updatereport($data){
   //Load the previous report
   //compare changes + write to log file
   //overwrite the report file
-    $preReport = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $preReport = $serverdatabase["report"];
+    echo "<pre>";
+    var_dump($preReport);
+    echo "</pre>";
+    //$preReport = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $diff["waterTankLevel"] = array_diff_assoc($data["waterTankLevel"], $preReport["waterTankLevel"]);
-    //$diff["reading"] = array_diff_assoc($data["reading"], $preReport["reading"]);
     $diff["status"] = array_diff_assoc($data["status"], $preReport["status"]);
     //write the difference of the 2 reports to the log file
     $LOG = fopen(INCLUDE_PATH . "/log.txt", "r+") or die("Unable to open log.txt!");
@@ -92,9 +133,14 @@ class dataService {
     };
 
     fclose($LOG);
-    //overwrite the report
+
+    //overwrite the report in the server database
+    $serverdatabase["report"] = $data;
+    echo "==========================<br><br><pre>";
+    var_dump($serverdatabase["report"]);
+    echo "</pre>";
     $freport = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
-    $fdata = json_encode($data);
+    $fdata = json_encode($serverdatabase);
     fwrite($freport, $fdata);
     fclose($freport);
     return;

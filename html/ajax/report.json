@@ -1,10 +1,1 @@
-{"status":{"pumping":false,"heating":false,"LightW":"Low","LightB":true,"LightR":false},"waterTankLevel":{"below50":true,"below20":false,"empty":false},"reading":{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}}
-
-
-
-{	  "timestamp":"2017-06-27 22:27:21",
-    "action":[{"pumping":false,"heating":false}],
-		"status":[{"pumping":false,"heating":false,"LightW":"Low","LightB":true,"LightR":false}],
-		"waterTankLevel":[{"below50":true,"below20":false,"empty":false}],
-		"reading":[{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}]
-}
+{"report":{"status":{"pumping":false,"heating":true,"LightW":"high","LightB":true,"LightR":false},"waterTankLevel":{"below50":true,"below20":false,"empty":false},"reading":{"temperature":27.1,"airHumidity":40.5,"soilHumidity":10.3,"lux":10000}},"appdata":{"selectedplant":"Lily","selectedid":2,"nickname":"Abuca","lastTimeWater":"2017-06-28 18:15:39","action":{"pump":true,"heat":false,"lightB":true,"lightR":true}}}
