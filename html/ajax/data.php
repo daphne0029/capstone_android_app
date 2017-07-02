@@ -58,6 +58,8 @@ try {
     $response['status'] = -1;
     $response['errMsg'] = $e->getMessage();
 }
+//echo "<h2>what we sent to microprocessor:</h2>";
+//$response['debug'] = ''
 echo json_encode($response);
 
 ?>

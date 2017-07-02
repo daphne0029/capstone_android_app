@@ -3,13 +3,13 @@
 
 }(function(myApp){
   var data = myApp.data;
-  data.selectedPlant.commonName = "No plant is selected";
-  data.selectedPlant.profileImg = "assets/questionmark.jpg";
-  data.backEndData.temperature = "17.5" + "&deg;C";
-  data.backEndData.airHunidity = "35%";
-  data.backEndData.soilHumidity = "Dry";
+
   var waterlvlMSG = "Below 50%";
   var waterlvlClass = "fa-battery-half";
+
+
+
+
 
   var homeView = function() {
 

@@ -3,7 +3,8 @@
 
 }(function(myApp){
   var config = {
-    appContainerId : "default_app_container"
+    appContainerId : "default_app_container",
+    apiUrl : "http://capstone.local/ajax/data.php"
   };
 
 
@@ -13,12 +14,15 @@
       plantsArray : []
     },
     backEndData : {
-      "temperature" : "",
-      "airHunidity" : "",
-      "soilHumidity" : ""
+      "temperature" : "17.5&deg;C",
+      "airHunidity" : "35%",
+      "soilHumidity" : "Dry"
     },
     backEndDataString : '',
-    selectedPlant : [],
+    selectedPlant : {
+      commonName : "No plant is selected",
+      profileImg : "assets/questionmark.jpg",
+    },
   };
   var control = {
     home : {
@@ -38,6 +42,7 @@
       events : []
     },
   };
+
   myApp.control = control;
   myApp.data = data;
 
@@ -100,77 +105,21 @@
   	    }
   	});
   };
-  /*
-  myApp.buildView = function() {
-
-    $('#'+config.appContainerId).empty();
-    var view = '';
-
-    view += '<div class="body_view">';
-    view += myApp.buildViewHome();
-    view += '<div class="status"> status view</div>';
-    view += '<div class="plant"> plants view</div>';
-    view += '<div class="setting"> settings view</div>';
-    view += '</div>';
-
-    view += '<div class="menu">';
-    view += '<div class="home"> home</div>';
-    view += '<div class="status"> status</div>';
-    view += '<div class="plant"> plants</div>';
-    view += '<div class="setting"> settings</div>';
-    view += '</div>';
-
-    view += '<div id="home" class="app_wrapper">';
-    view += myApp.buildViewHome();
-    view += '</div>';
-
-    view += '<div id="status" class="app_wrapper">';
-    view += myApp.buildViewStatus();
-    view += '</div>';
-
-    view += '<div id="plant" class="app_wrapper">';
-    view += myApp.buildViewPlant();
-    view += '</div>';
-
-    view += '<div id="setting" class="app_wrapper">';
-    view += myApp.buildViewSetting();
-    view += '</div>';
-
-    $('#'+config.appContainerId).html(view);
-
+  myApp.requestreport = function() {
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'requestreport'},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+            data.selectedPlant.commonName = response.appdata.selectedplant;
+          } else {
+            //handle error
+          }
+        }
+    });
   };
-
-  */
-  //binding menu events
-  /*
-  myApp.bindEvents = function() {
-    myApp.bindEventsHome();
-    myApp.bindEventsStatus();
-    myApp.bindEventsPlant();
-    myApp.bindEventsSetting();
-    */
-    /*
-    $('#homepage').click(()=>{
-      myApp.displayHomePage();
-    });
-    */
-    //$('#default_app_container .test')
-    /*
-    $('#'+config.appContainerId+' .test').each(function(){
-      $(this).click(function(){
-        alert('hello world');
-      });
-    });
-    $('#'+config.appContainerId+' .menu div').each(function(){
-      $(this).click(function(){
-        var className = $(this).attr('class');
-        $('#'+config.appContainerId+' .body_view div').hide();
-        $('#'+config.appContainerId+' .body_view div.'+className).fadeIn();
-      });
-    });
-
-  }
-*/
 
   myApp.boot = function(cfg) {
     myApp.loadConfig(cfg);
@@ -188,18 +137,11 @@
 
     console.log('initializing ... ');
     myApp.getData(function(){
+      myApp.requestreport();
       myApp.init();
     });
 
-/*
-    var name = 'lonelymonkey';
-    var num = 10;
-    var view = ' hello <strong>'  + name + '</strong> \
-                <div>chickenbone boy '+ num +'</div>                                      \
-                ';
-    $('#'+config.appContainerId).html(view);
 
-    */
   }
 
 

@@ -46,30 +46,126 @@
     //console.log(view);
     return view;
   };
+  myApp.toggleManualMode = function(mode) {
+    var d = {
+      mode : mode
+    };
 
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'toggleManualMode', 'data' : JSON.stringify(d)},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+
+          } else {
+            //handle error
+          }
+        }
+    });
+  }
+  myApp.togglebluelight = function(lightB) {
+    var d = {
+      lightB : lightB
+    };
+
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'togglebluelight', 'data' : JSON.stringify(d)},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+
+          } else {
+            //handle error
+          }
+        }
+    });
+  }
+  myApp.toggleredlight = function(lightR) {
+    var d = {
+      lightR : lightR
+    };
+
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'toggleredlight', 'data' : JSON.stringify(d)},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+
+          } else {
+            //handle error
+          }
+        }
+    });
+  }
+  myApp.pumpwater = function(pump) {
+    var d = {
+      pump : pump
+    };
+
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'pumpwater', 'data' : JSON.stringify(d)},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+
+          } else {
+            //handle error
+          }
+        }
+    });
+  }
   var settingEvents = function() {
     console.log('binding setting events');
     $('.header_menu').click(function(){
       myApp.goTo('home');
       console.log("going back to home page");
     });
-    $(".messageCheckbox","#manualButton").click(function(){
+    //$(".messageCheckbox","#manualButton").click(function(){
+    $("#manualButton .messageCheckbox").click(function(){
       console.log('user turning on manual mode');
-      var manualMode = $(".messageCheckbox:checked","#manualButton").val();
-      if(manualMode == 'on'){
+      var manualMode = $(".messageCheckbox","#manualButton").is(':checked');
+      myApp.toggleManualMode(manualMode);
+
+      if(manualMode){
         $(".messageCheckbox","#blueLight").removeAttr('disabled');
         $(".messageCheckbox","#redLight").removeAttr('disabled');
         $(".wateringimg").removeAttr('disabled');
       }else{
         $(".messageCheckbox","#blueLight").prop('checked',false);
+        //lightB = $(".messageCheckbox","#blueLight").is(':checked');
+        //myApp.togglebluelight(lightB);
         $(".messageCheckbox","#redLight").prop('checked',false);
+        //lightR = $(".messageCheckbox","#redLight").is(':checked');
+        //myApp.toggleredlight(lightR);
         $(".messageCheckbox","#blueLight").attr('disabled','disabled');
         $(".messageCheckbox","#redLight").attr('disabled','disabled');
         $(".wateringimg").attr('disabled','disabled');
+        //myApp.pumpwater(false);
       }
 
     });
-
+    $(".messageCheckbox","#blueLight").click(function(){
+      var lightB = $(".messageCheckbox","#blueLight").is(':checked');
+      console.log('user turning on blue light');
+      myApp.togglebluelight(lightB);
+    });
+    $(".messageCheckbox","#redLight").click(function(){
+      var lightR = $(".messageCheckbox","#redLight").is(':checked');
+      console.log('user turning on red light');
+      myApp.toggleredlight(lightR);
+    });
+    $(".wateringimg").click(function(){
+      console.log('user wants to pump water');
+      myApp.pumpwater(true);
+    });
   };
 
 
