@@ -90,7 +90,7 @@
   myApp.getData = function(callback) {
     $.ajax({
   	    type: "get",
-  	    url: "http://capstone.local/ajax/data.php",
+  	    url: myApp.config.apiUrl,
   	    data: {'function' : 'initialLoad'},
   	    dataType: 'json',
   	    success: function(response){
