@@ -4,6 +4,6 @@
 # System Files
 .DS_Store
 Thumbs.db
-
+html/index.html
 #myApp
 includes/config.inc
