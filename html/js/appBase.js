@@ -14,13 +14,19 @@
       plantsArray : []
     },
     backEndData : {
-      "temperature" : "17.5&deg;C",
-      "airHunidity" : "35%",
-      "soilHumidity" : "Dry"
+      temperature : "00.0&deg;C",
+      airHumidity : "00%",
+      soilHumidity : "00%",
+      waterTankLevel : {
+        below50 : false,
+        below20 : false,
+        empty : false
+      }
     },
     backEndDataString : '',
     selectedPlant : {
       commonName : "No plant is selected",
+      selectedid : 0,
       profileImg : "assets/questionmark.jpg",
     },
   };
@@ -105,7 +111,7 @@
   	    }
   	});
   };
-  myApp.requestreport = function() {
+  myApp.requestreport = function(callback) {
     $.ajax({
         type: "get",
         url:   myApp.config.apiUrl,
@@ -113,7 +119,16 @@
         dataType: 'json',
         success: function(response){
           if (response.status > 0) {
-            data.selectedPlant.commonName = response.appdata.selectedplant;
+            data.selectedPlant.commonName = response.data.appdata.selectedplant;
+            data.backEndData.temperature = response.data.report.reading.temperature + "&deg;C";
+            data.backEndData.airHumidity = response.data.report.reading.airHumidity + "%";
+            data.backEndData.soilHumidity = response.data.report.reading.soilHumidity + "%";
+            data.backEndData.waterTankLevel = response.data.report.waterTankLevel;
+            data.selectedPlant.selectedid = response.data.appdata.selectedid;
+            data.selectedPlant.profileImg = data.plantsInfo.plantsArray[data.selectedPlant.selectedid].profileImg;
+            if (typeof(callback) == 'function'){
+              callback();
+            }
           } else {
             //handle error
           }
@@ -137,8 +152,9 @@
 
     console.log('initializing ... ');
     myApp.getData(function(){
-      myApp.requestreport();
-      myApp.init();
+      myApp.requestreport(function(){
+        myApp.init();
+      });
     });
 
 

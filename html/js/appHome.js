@@ -4,17 +4,28 @@
 }(function(myApp){
   var data = myApp.data;
 
-  var waterlvlMSG = "Below 50%";
-  var waterlvlClass = "fa-battery-half";
+  var waterlvlMSG = "Unknown";
+  var waterlvlClass = "Unknown";
+  var waterlvl = {
+    below50 : ["fa-battery-half","below 50%"],
+    below20 : ["fa-battery-quarter","below 20%"],
+    empty : ["fa-battery-empty","Empty"]
+  };
 
-
-
-
+  console.log(waterlvl.below50[0]);
 
   var homeView = function() {
 
-    waterlvlClass = "fa-battery-quarter";
-    waterlvlMSG = "Below 20%";
+    if (data.backEndData.waterTankLevel["empty"]){
+      waterlvlClass = waterlvl.empty[0];
+      waterlvlMSG = waterlvl.empty[1];
+    }else if (data.backEndData.waterTankLevel["below20"]) {
+      waterlvlClass = waterlvl.below20[0];
+      waterlvlMSG = waterlvl.below20[1];
+    }else if (data.backEndData.waterTankLevel["below50"]) {
+      waterlvlClass = waterlvl.below50[0];
+      waterlvlMSG = waterlvl.below50[1];
+    }
 
     var view = '<div id="home" class="app_wrapper">';
     view += myApp.buildHeaderView('Home');
@@ -36,7 +47,7 @@
         <img class="profile_img" src="${data.selectedPlant.profileImg}" alt="profile_img">
       </div>
       <div class="temperature"> ${data.backEndData.temperature}</div>
-      <div class="air_humidity"> ${data.backEndData.airHunidity} </div>
+      <div class="air_humidity"> ${data.backEndData.airHumidity} </div>
       <div class="soil_humidity"> ${data.backEndData.soilHumidity} </div>
       <div class="water_tank_stat"> Water Tank Level:
         <div>

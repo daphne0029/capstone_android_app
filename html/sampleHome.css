@@ -107,7 +107,7 @@ body {
 
 .body .temperature {
   margin-top: 45px;
-  margin-left: 30px;
+  margin-left: 20px;
   height: 100px;
   width: 200px;
   font-size: 80;
@@ -118,7 +118,7 @@ body {
 
 .body .air_humidity {
   margin-top: 45px;
-  margin-left: 765px;
+  margin-left: 735px;
   height: 100px;
   width: 200px;
   font-size: 80px;
