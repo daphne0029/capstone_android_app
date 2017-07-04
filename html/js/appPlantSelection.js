@@ -48,6 +48,27 @@
     return view;
   };
 
+  myApp.updateselectedplant = function(name,id) {
+    var d = {
+      name : name,
+      id : id
+    };
+
+    $.ajax({
+        type: "get",
+        url:   myApp.config.apiUrl,
+        data: {'function' : 'updateselectedplant', 'data' : JSON.stringify(d)},
+        dataType: 'json',
+        success: function(response){
+          if (response.status > 0) {
+
+          } else {
+            //handle error
+          }
+        }
+    });
+  }
+
   var plantEvents = function() {
     console.log('binding plant events');
     $('.header_menu').click(function(){
@@ -65,7 +86,10 @@
         $(this).addClass('selectedrow');
         $('.SelectMark').not(this).text('-');
         $('.SelectMark',this).text('v');
-        myApp.data.selectedPlant = data.plantsInfo.plantsArray[selectedindex];
+        myApp.data.selectedPlant.commonName = data.plantsInfo.plantsArray[selectedindex].commonName;
+        myApp.data.selectedPlant.selectedid = selectedindex;
+        myApp.data.selectedPlant.profileImg = data.plantsInfo.plantsArray[selectedindex].profileImg;
+        myApp.updateselectedplant(myApp.data.selectedPlant.commonName,myApp.data.selectedPlant.selectedid);
       }else{
         "you press cancel";
       };

@@ -25,7 +25,7 @@
     }else if (data.backEndData.waterTankLevel["below50"]) {
       waterlvlClass = waterlvl.below50[0];
       waterlvlMSG = waterlvl.below50[1];
-    }
+    };
 
     var view = '<div id="home" class="app_wrapper">';
     view += myApp.buildHeaderView('Home');

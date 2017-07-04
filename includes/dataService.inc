@@ -17,6 +17,19 @@ class dataService {
     $output = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
     return $output;
   }
+  public function updateselectedplant($data) {
+    $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
+
+    $serverdatabase["appdata"]["selectedplant"] = $data["name"];
+    $serverdatabase["appdata"]["selectedid"] = $data["id"];
+
+    $fdata = json_encode($serverdatabase);
+    fwrite($fdatabase, $fdata);
+    fclose($fdatabase);
+
+    return true;
+  }
   public function requestreport(){
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     return $serverdatabase;

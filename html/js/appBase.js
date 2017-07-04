@@ -17,11 +17,14 @@
       temperature : "00.0&deg;C",
       airHumidity : "00%",
       soilHumidity : "00%",
+      lastTimeWater : "yyyy-mm-dd 24HH:MI:SS",
       waterTankLevel : {
         below50 : false,
         below20 : false,
         empty : false
-      }
+      },
+      manualmode : false,
+      status : {}
     },
     backEndDataString : '',
     selectedPlant : {
@@ -123,6 +126,9 @@
             data.backEndData.temperature = response.data.report.reading.temperature + "&deg;C";
             data.backEndData.airHumidity = response.data.report.reading.airHumidity + "%";
             data.backEndData.soilHumidity = response.data.report.reading.soilHumidity + "%";
+            data.backEndData.lastTimeWater = response.data.appdata.lastTimeWater;
+            data.backEndData.status = response.data.report.status;
+            data.backEndData.manualmode = response.data.appdata.manualmode;
             data.backEndData.waterTankLevel = response.data.report.waterTankLevel;
             data.selectedPlant.selectedid = response.data.appdata.selectedid;
             data.selectedPlant.profileImg = data.plantsInfo.plantsArray[data.selectedPlant.selectedid].profileImg;
