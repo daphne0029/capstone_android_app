@@ -4,6 +4,29 @@
   var data = myApp.data;
   var settingView = function() {
     console.log("building setting view");
+    var Modechecked = "";
+    var bluechecked = ""; var bluedisable = "disabled";
+    var redchecked = ""; var reddisable = "disabled";
+    console.log("Manual node = " + data.backEndData.manualmode);
+    if (data.backEndData.manualmode) {
+      Modechecked = "checked";
+      reddisable = "";
+      bluedisable = "";
+      if (data.backEndData.status.LightB) {
+        bluechecked = "checked";
+      }else{
+        bluechecked = "";
+      };
+      if (data.backEndData.status.LightR) {
+        redchecked = "checked";
+
+      }else{
+        redchecked = "";
+      };
+    }else{
+      Modechecked = "";
+    };
+    console.log("Modechecked = " + Modechecked);
     var view = '<div id="setting" class="app_wrapper">';
     view += myApp.buildHeaderView('Setting');
     view += `<div class="main">
@@ -12,7 +35,7 @@
             <label class="toggleLabel"> Manual Mode </label>
 
             <label class="switch toggleSide">
-                <input class="messageCheckbox" type="checkbox">
+                <input class="messageCheckbox" type="checkbox" ${Modechecked}>
                 <div class="slider round"></div>
             </label>
         </div>
@@ -21,7 +44,7 @@
             <label class="toggleLabel"> Blue Light </label>
 
             <label class="switch toggleSide">
-                <input class="messageCheckbox" type="checkbox" disabled>
+                <input class="messageCheckbox" type="checkbox" ${bluechecked} ${bluedisable}>
                 <div class="slider round"></div>
             </label>
         </div>
@@ -30,7 +53,7 @@
             <label class="toggleLabel"> Red Light </label>
 
             <label class="switch toggleSide">
-                <input class="messageCheckbox" type="checkbox" disabled="disabled">
+                <input class="messageCheckbox" type="checkbox" ${redchecked} ${reddisable}>
                 <div class="slider round"></div>
             </label>
         </div>
@@ -122,6 +145,7 @@
         }
     });
   }
+
   var settingEvents = function() {
     console.log('binding setting events');
     $('.header_menu').click(function(){
@@ -140,15 +164,10 @@
         $(".wateringimg").removeAttr('disabled');
       }else{
         $(".messageCheckbox","#blueLight").prop('checked',false);
-        //lightB = $(".messageCheckbox","#blueLight").is(':checked');
-        //myApp.togglebluelight(lightB);
         $(".messageCheckbox","#redLight").prop('checked',false);
-        //lightR = $(".messageCheckbox","#redLight").is(':checked');
-        //myApp.toggleredlight(lightR);
         $(".messageCheckbox","#blueLight").attr('disabled','disabled');
         $(".messageCheckbox","#redLight").attr('disabled','disabled');
         $(".wateringimg").attr('disabled','disabled');
-        //myApp.pumpwater(false);
       }
 
     });

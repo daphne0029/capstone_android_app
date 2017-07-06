@@ -78,10 +78,10 @@
     $('.myrow').click(function(){
       //Alert user that he/she is changing the setting
       var selectedindex = $('.arrayindex',this).text();
-      var confirmMSG = `Gaia is currently growing : ${myApp.data.selectedPlant.commonName}
-      Do you want to change the growing plant to ${data.plantsInfo.plantsArray[selectedindex].commonName}?` ;
+      //var confirmMSG = `Gaia is currently growing : ${myApp.data.selectedPlant.commonName}
+      //Do you want to change the growing plant to ${data.plantsInfo.plantsArray[selectedindex].commonName}?` ;
 
-      if (confirm(confirmMSG) == true){
+      //if (confirm(confirmMSG) == true){
         $('.myrow').not(this).removeClass('selectedrow');
         $(this).addClass('selectedrow');
         $('.SelectMark').not(this).text('-');
@@ -90,9 +90,9 @@
         myApp.data.selectedPlant.selectedid = selectedindex;
         myApp.data.selectedPlant.profileImg = data.plantsInfo.plantsArray[selectedindex].profileImg;
         myApp.updateselectedplant(myApp.data.selectedPlant.commonName,myApp.data.selectedPlant.selectedid);
-      }else{
-        "you press cancel";
-      };
+      //}else{
+      //  "you press cancel";
+      //};
 
 
     });

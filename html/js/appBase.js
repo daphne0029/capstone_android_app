@@ -128,6 +128,7 @@
             data.backEndData.soilHumidity = response.data.report.reading.soilHumidity + "%";
             data.backEndData.lastTimeWater = response.data.appdata.lastTimeWater;
             data.backEndData.status = response.data.report.status;
+            //console.log("******(database)red led = " + response.data.report.status.LightR);
             data.backEndData.manualmode = response.data.appdata.manualmode;
             data.backEndData.waterTankLevel = response.data.report.waterTankLevel;
             data.selectedPlant.selectedid = response.data.appdata.selectedid;

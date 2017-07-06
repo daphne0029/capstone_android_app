@@ -43,7 +43,7 @@ class dataService {
     $serverdatabase["appdata"]["manualmode"] = $data["mode"];
     if (!$data["mode"]) {
       $serverdatabase["appdata"]["action"]["lightR"] = false;
-      $serverdatabase["appdata"]["action"]["lightR"] = false;
+      $serverdatabase["appdata"]["action"]["lightB"] = false;
       $serverdatabase["appdata"]["action"]["pump"] = false;
     }
     $fdata = json_encode($serverdatabase);
