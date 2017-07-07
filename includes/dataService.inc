@@ -4,6 +4,10 @@ require('config.inc');
 date_default_timezone_set('America/Vancouver');
 
 class dataService {
+  public $config = array(
+    'apiLogPath' => ROOTPATH . '/html/ajax/apiLog.txt',
+    'apiLogMaxLine' => 50,
+  );
   public function __construct() {
   }
   public function initialLoad() {
@@ -12,6 +16,28 @@ class dataService {
     //$output['setting'] = $this->getSetting();
     //$output['status'] = $this->getStatus();
     return $output;
+  }
+  private function log() {
+    $logs = file($this->config['apiLogPath']);
+
+    $newLine = date('Y-m-d H:i:s') . ' from ' . $_SERVER['REMOTE_ADDR'] . ': GET - ' . http_build_query($_GET);
+    array_unshift($logs,$newLine);
+    $newLogs = array();
+
+    $count = 0;
+    foreach($logs AS $index => $line) {
+      if (!empty(trim($line))) {
+        $newLogs[] = $line;
+        $count++;
+      }
+      if ($count >= $this->config['apiLogMaxLine']) {
+        break;
+      }
+    }
+    $fid = fopen($this->config['apiLogPath'],"w");
+    fputs($fid,implode(PHP_EOL,$newLogs));
+    fclose($fid);
+    //rotate log
   }
   public function getPlantSpecs() {
     $output = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
@@ -31,6 +57,7 @@ class dataService {
     return true;
   }
   public function requestreport(){
+    $this->log();
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     return $serverdatabase;
   }
@@ -59,7 +86,7 @@ class dataService {
   }
   public function togglebluelight($data) {
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
-    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "r+") or die("Unable to open report.json!");
 
     $serverdatabase["appdata"]["action"]["lightB"] = $data["lightB"];
 
@@ -91,6 +118,7 @@ class dataService {
     return true;
   }
   public function report($data) {
+    $this->log();
     //Load the previous report
     //compare changes + write to log file
     //overwrite (save) the report file
