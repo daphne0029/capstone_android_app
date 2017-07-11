@@ -7,11 +7,13 @@
     var Modechecked = "";
     var bluechecked = ""; var bluedisable = "disabled";
     var redchecked = ""; var reddisable = "disabled";
+    var waterdisable = "disabled";
     console.log("Manual node = " + data.backEndData.manualmode);
     if (data.backEndData.manualmode) {
       Modechecked = "checked";
       reddisable = "";
       bluedisable = "";
+      waterdisable = "";
       if (data.backEndData.status.LightB) {
         bluechecked = "checked";
       }else{
@@ -59,7 +61,7 @@
         </div>
         <div class="toggleLabel toggleSection">
             <p><i>the watering button will have a 30 second delay time between waterings</i></p>
-            <input class="wateringimg" type="image" src="wateringcan.png" disabled/>
+            <input class="wateringimg" type="image" src="wateringcan.png" ${waterdisable}/>
             <br>
             <p class="buttonLabel"> Press the image to water your plant! </p>
         </div>

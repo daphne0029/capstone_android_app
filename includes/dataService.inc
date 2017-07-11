@@ -2,13 +2,13 @@
 
 require('config.inc');
 date_default_timezone_set('America/Vancouver');
-
 class dataService {
   public $config = array(
-    'apiLogPath' => ROOTPATH . '/html/ajax/apiLog.txt',
-    'apiLogMaxLine' => 50,
+    'apiLogPath' =>  '/html/ajax/apiLog.txt',
+    'apiLogMaxLine' => 50
   );
   public function __construct() {
+    $this->config['apiLogPath'] = ROOTPATH . '/html/ajax/apiLog.txt';
   }
   public function initialLoad() {
     $output = array();
@@ -19,14 +19,15 @@ class dataService {
   }
   private function log() {
     $logs = file($this->config['apiLogPath']);
-
     $newLine = date('Y-m-d H:i:s') . ' from ' . $_SERVER['REMOTE_ADDR'] . ': GET - ' . http_build_query($_GET);
     array_unshift($logs,$newLine);
     $newLogs = array();
 
     $count = 0;
+
     foreach($logs AS $index => $line) {
-      if (!empty(trim($line))) {
+      $trimedLine = trim($line);
+      if (!empty($trimedLine)) {
         $newLogs[] = $line;
         $count++;
       }
@@ -34,9 +35,11 @@ class dataService {
         break;
       }
     }
+
     $fid = fopen($this->config['apiLogPath'],"w");
     fputs($fid,implode(PHP_EOL,$newLogs));
     fclose($fid);
+    
     //rotate log
   }
   public function getPlantSpecs() {

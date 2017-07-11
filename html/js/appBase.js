@@ -4,11 +4,13 @@
 }(function(myApp){
   var config = {
     appContainerId : "default_app_container",
-    apiUrl : "http://capstone.local/ajax/data.php"
+    apiUrl : "http://capstone.local/ajax/data.php",
+    updatePeriod : 3000,
   };
 
 
   var data = {
+    currentPage : 'home',
     nickname : '',
     plantsInfo : {
       plantsArray : []
@@ -56,12 +58,12 @@
   myApp.data = data;
 
   myApp.init = function() {
-    myApp.goTo('home');
+    myApp.goTo(data.currentPage);
   };
   myApp.goTo = function(page) {
     //$('.app_wrapper').hide();
     //$('#'+page).fadeIn();
-
+    data.currentPage = page;
     $('#'+config.appContainerId).empty();
     //call page function
     var view = '';
@@ -162,6 +164,18 @@
       myApp.requestreport(function(){
         myApp.init();
       });
+      //start periodic update on data
+      setInterval(()=>{
+        myApp.requestreport(()=>{
+          console.log('request report callback');
+          var newDataString = JSON.stringify(data.selectedPlant) + JSON.stringify(data.backEndData);
+          if (newDataString !== data.backEndDataString) {
+            data.backEndDataString = newDataString;
+            console.log('rebuilding '+data.currentPage);
+            myApp.goTo(data.currentPage);
+          }
+        });
+      },config.updatePeriod)
     });
 
 

@@ -7,5 +7,6 @@ Thumbs.db
 html/index.html
 includes/log.txt
 ajax/report.json
+ajax\apiLog.txt
 #myApp
 includes/config.inc
