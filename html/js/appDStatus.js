@@ -85,7 +85,6 @@
 
 
     view += '</div>';
-    //console.log(view);
     return view;
   };
 

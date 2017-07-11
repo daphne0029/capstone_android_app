@@ -39,7 +39,7 @@ class dataService {
     $fid = fopen($this->config['apiLogPath'],"w");
     fputs($fid,implode(PHP_EOL,$newLogs));
     fclose($fid);
-    
+
     //rotate log
   }
   public function getPlantSpecs() {
