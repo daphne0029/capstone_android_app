@@ -1,40 +1,29 @@
-//microprocessor's report
-{
-  "status":{
-    "pumping":false,
-    "heating":false,
-    "LightW":"off",
-    "LightB":false,
-    "LightR":false
+{ "status":1,
+  "data":{
+    "status":1,
+    "profile":{
+      "manualmode":false,
+      "day":true
     },
-    "waterTankLevel":{
-      "below50":false,
-      "below20":false,
-      "empty":false
+    "action":{
+      "lightR":false,
+      "lightB":false,
+      "pump":false
     },
-    "reading":{
-      "temperature":0.0,
-      "airHumidity":0.0,
-      "soilHumidity":0.0,
-      "lux":0
+    "growing":{
+      "commonName":"Lavender",
+      "watering":80,
+      "lightingMin":20000,
+      "lightingMax":38000,
+      "humidity":70,
+      "temperatureLow":15,
+      "temperatureHigh":25
     }
   }
-
-
-//server return
-{
-  "status" : 1,
-  "profile": {
-    "commonName" : "Lily",
-    "autoMode" : true,
-    "day": true,
-    "lastTimeWater": "2017-09-09 19:11:12"
-  },
-  "action": {
-    "pump": true,
-    "heat": false,
-    "lightB": true,
-    "lightR": true
-  }
-  }
 }
+
+
+status,manualmode,day,lightR,lightB,pump,commonName,watering,lightingMin,lightingMax,humidity,temperatureLow,temperatureHigh
+1,0,1,0,0,0,Lavender,80,20000,38000,70,15,25
+
+{1,0,1,0,0,0,Lavender,80,20000,38000,70,15,25}

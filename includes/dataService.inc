@@ -132,6 +132,7 @@ class dataService {
     return $returnData;//has to be a php array
   }
   public function getReturnInfo($data){
+    $flattenData = array();
     $returnData = array(
       "status" => 1,
       "profile" => array(
@@ -163,6 +164,8 @@ class dataService {
     $plantid = $appData["selectedid"];
     $plantspecs = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
     $returnData["growing"] = $plantspecs["plantsArray"][$plantid];
+    unset($returnData["growing"]["profileImg"]);
+    unset($returnData["growing"]["species"]);
 
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
@@ -187,11 +190,31 @@ class dataService {
     //update modeswich
     $returnData["profile"]["manualmode"] = $appData["manualmode"];
 
+
+    $flattenData = $this->flattenArray($returnData["profile"],$flattenData);
+    $flattenData = $this->flattenArray($returnData["action"],$flattenData);
+    foreach($returnData["growing"] as $value){
+      $flattenData[] = $value;
+    };
+    //var_dump($flattenData);
+    $returnStr = '{' . implode(',' , $flattenData) .'}';
+    //var_dump($returnStr);
+
     $fdata = json_encode($serverdatabase);
     fwrite($fdatabase, $fdata);
     fclose($fdatabase);
 
-    return $returnData;
+    return $returnStr;
+  }
+  public function flattenArray($oldA,$newA){
+    foreach($oldA as $value){
+      if($value){
+        $newA[] = 1;
+      }else{
+        $newA[] = 0;
+      };
+    };
+    return $newA;
   }
   public function updatereport($data){
   //Load the previous report

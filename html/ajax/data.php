@@ -60,6 +60,12 @@ try {
 }
 //echo "<h2>what we sent to microprocessor:</h2>";
 //$response['debug'] = ''
-echo json_encode($response);
+if ($_GET['function'] == 'report' OR $_GET['function']=='testJson') {
+  //echo addcslashes(json_encode($response),'"');
+  echo $response["data"];
+} else {
+  echo json_encode($response);
+}
+
 
 ?>
