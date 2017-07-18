@@ -27,3 +27,36 @@ status,manualmode,day,lightR,lightB,pump,commonName,watering,lightingMin,lightin
 1,0,1,0,0,0,Lavender,80,20000,38000,70,15,25
 
 {1,0,1,0,0,0,Lavender,80,20000,38000,70,15,25}
+-------
+{
+  "status":{
+    "pumping":false,
+    "heating":true,
+    "LightW":"Low",
+    "LightB":false,
+    "LightR":false
+  },
+  "waterTankLevel":{
+    "below50":true,
+    "below20":false,
+    "empty":false
+  },
+  "reading":{
+    "temperature":27.1,
+    "airHumidity":40.5,
+    "soilHumidity":10.3,
+    "lux":10000
+  }
+}
+
+{pumping,heating,LightW,LightB,LightR,below50,below20,empty,temperature,airHumidity,soilHumidity,lux}
+{0,1,low,0,0,1,0,0,27,40,10,10000}
+
+--
+{
+  "status":{
+    "pumping":"0",
+    "heating":"1",
+    "LightW":"low",
+    "LightB":"0",
+    "LightR":"0"},"waterTankLevel":[],"reading":[]}

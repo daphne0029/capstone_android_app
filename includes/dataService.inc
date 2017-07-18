@@ -89,7 +89,7 @@ class dataService {
   }
   public function togglebluelight($data) {
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
-    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "r+") or die("Unable to open report.json!");
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
     $serverdatabase["appdata"]["action"]["lightB"] = $data["lightB"];
 
@@ -125,9 +125,45 @@ class dataService {
     //Load the previous report
     //compare changes + write to log file
     //overwrite (save) the report file
-    $this->updatereport($data);
 
-    $returnData = $this->getReturnInfo($data);
+    //Parse the data string to object
+    //$datastr = "{0,1,low,0,0,1,0,0,27,40,10,10000}";
+    $datastr = $data;
+    $datastr = str_replace("{","",$datastr);
+    $datastr = str_replace("}","",$datastr);
+    $flattenArray = explode(",", $datastr);
+    $dataArray["status"] = array();
+    $dataArray["waterTankLevel"] = array();
+    $dataArray["reading"] = array();
+
+    $dataArray["status"] = array(
+      "pumping"=>($flattenArray[0] === '1'),
+      "heating"=>($flattenArray[1] === '1'),
+      "LightW"=>$flattenArray[2],
+      "LightB"=>($flattenArray[3] === '1'),
+      "LightR"=>($flattenArray[4] === '1')
+    );
+    $dataArray["waterTankLevel"] = array(
+      "below50"=>($flattenArray[5] === '1'),
+      "below20"=>($flattenArray[6] === '1'),
+      "empty"=>($flattenArray[7] === '1')
+    );
+    $dataArray["reading"] = array(
+      "temperature"=>$flattenArray[8],
+      "airHumidity"=>$flattenArray[9],
+      "soilHumidity"=>$flattenArray[10],
+      "lux"=>$flattenArray[11]
+    );
+
+    /*$testarray = json_encode($dataArray);
+    var_dump($testarray);
+    echo "<br><br>";*/
+    //================
+    //$this->updatereport($data);
+    $this->updatereport($dataArray);
+
+    //$returnData = $this->getReturnInfo($data);
+    $returnData = $this->getReturnInfo($dataArray);
 
     return $returnData;//has to be a php array
   }
