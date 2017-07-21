@@ -7,22 +7,26 @@
   var waterlvlMSG = "Unknown";
   var waterlvlClass = "Unknown";
   var waterlvl = {
+    above50 : ["fa-battery-three-quarters", "Above 50%"],
     below50 : ["fa-battery-half","below 50%"],
     below20 : ["fa-battery-quarter","below 20%"],
     empty : ["fa-battery-empty","Empty"]
   };
 
-  console.log(waterlvl.below50[0]);
+  console.log(!data.backEndData.waterTankLevel["below50"]);
 
   var homeView = function() {
-
-    if (data.backEndData.waterTankLevel["empty"]){
+    var abovefifty = data.backEndData.waterTankLevel["below50"] && data.backEndData.waterTankLevel["below20"] && data.backEndData.waterTankLevel["empty"];
+    if(abovefifty){
+      waterlvlClass = waterlvl.above50[0];
+      waterlvlMSG = waterlvl.above50[1];
+    }else if(!data.backEndData.waterTankLevel["empty"]){
       waterlvlClass = waterlvl.empty[0];
       waterlvlMSG = waterlvl.empty[1];
-    }else if (data.backEndData.waterTankLevel["below20"]) {
+    }else if (!data.backEndData.waterTankLevel["below20"]) {
       waterlvlClass = waterlvl.below20[0];
       waterlvlMSG = waterlvl.below20[1];
-    }else if (data.backEndData.waterTankLevel["below50"]) {
+    }else if (!data.backEndData.waterTankLevel["below50"]) {
       waterlvlClass = waterlvl.below50[0];
       waterlvlMSG = waterlvl.below50[1];
     };
