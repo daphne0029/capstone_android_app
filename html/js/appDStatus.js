@@ -77,6 +77,10 @@
                     <td> Blue: </td>
                     <td> ${LightB} </td>
                 </tr>
+                <tr>
+                    <th class="rowheader"> Last Confirmation from Gaia: </th>
+                    <td> ${data.backEndData.lastConfirm} </td>
+                </tr>
             </table>
         </div>
     </div>`;

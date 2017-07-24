@@ -60,3 +60,32 @@ status,manualmode,day,lightR,lightB,pump,commonName,watering,lightingMin,lightin
     "LightW":"low",
     "LightB":"0",
     "LightR":"0"},"waterTankLevel":[],"reading":[]}
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "keydata":{
+    "key":"000",
+    "confirm":false,
+    "confirmTS":"2017-07-24 00:00:00"
+    },
+    "appdata":{
+      "selectedplant":"Parsley",
+      "selectedid":"8",
+      "nickname":"Abuca",
+      "manualmode":true,
+      "action":{
+        "lightR":true,
+        "lightB":false,
+        "pump":false
+      },
+      "lastTimeWater":"2017-07-11 12:25:31"},"report":{"status":{"pumping":false,"heating":true,"LightW":"Low","LightB":false,"LightR":false},"waterTankLevel":{"below50":true,"below20":false,"empty":false},"reading":{"temperature":27.1,"airHumidity":35,"soilHumidity":10.3,"lux":10000}}}

@@ -17,6 +17,24 @@ class dataService {
     //$output['status'] = $this->getStatus();
     return $output;
   }
+  public function keyincrement() {
+    $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
+    $KEY = $serverdatabase["keydata"]["key"];
+
+    $intkey = intval($KEY);
+    $intkey += 1;
+    if ($intkey>=1000){
+      $intkey = 0;
+    }
+    $KEY = sprintf('%03d', $intkey);
+    $serverdatabase["keydata"]["key"] = $KEY;
+    $serverdatabase["keydata"]["confirm"] = false;
+
+    $fdata = json_encode($serverdatabase);
+    fwrite($fdatabase, $fdata);
+    fclose($fdatabase);
+  }
   private function log() {
     $logs = file($this->config['apiLogPath']);
     $newLine = date('Y-m-d H:i:s') . ' from ' . $_SERVER['REMOTE_ADDR'] . ': GET - ' . http_build_query($_GET);
@@ -47,6 +65,7 @@ class dataService {
     return $output;
   }
   public function updateselectedplant($data) {
+    $this->keyincrement();
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
@@ -65,6 +84,7 @@ class dataService {
     return $serverdatabase;
   }
   public function toggleManualMode($data) {
+    $this->keyincrement();
     //http://capstone.local/ajax/data.php?function=modeswich&data=on
     //http://capstone.local/ajax/data.php?function=modeswich&data=off
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
@@ -88,6 +108,7 @@ class dataService {
     return true;
   }
   public function togglebluelight($data) {
+    $this->keyincrement();
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
@@ -99,6 +120,7 @@ class dataService {
     return true;
   }
   public function toggleredlight($data) {
+    $this->keyincrement();
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
@@ -110,6 +132,7 @@ class dataService {
     return true;
   }
   public function pumpwater($data) {
+    $this->keyincrement();
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
@@ -122,6 +145,11 @@ class dataService {
   }
   public function report($data) {
     $this->log();
+    $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+
+    $currentKEY= $serverdatabase["keydata"]["currentkey"];
+    $confirm = $serverdatabase["keydata"]["confirm"];
+    $confirmTS = $serverdatabase["keydata"]["confirmTS"];
     //Load the previous report
     //compare changes + write to log file
     //overwrite (save) the report file
@@ -154,13 +182,37 @@ class dataService {
       "soilHumidity"=>$flattenArray[10],
       "lux"=>$flattenArray[11]
     );
+    $dataArray["key"] = $flattenArray[12];
+
+    //Comare if $dataArray["key"] is same as the key in databases
+    //echo "Key received is " . (int)$dataArray["key"] . ", should be " . (int)$currentKEY . "<br>";
+
+    if((int)$currentKEY == (int)$dataArray["key"]){
+      //echo "update app <br>";
+      $confirm = true;
+      $confirmTS = date("Y-m-d H:i:s");
+      //only update report when key matches
+      $this->updatereport($dataArray);
+      //Write pump action back to false
+      $serverdatabase["appdata"]["action"]["pump"] = false;
+    }else{
+      //echo "Do NOT update app <br>";
+      $confirm = false;
+    }
+
+    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
+    $serverdatabase["keydata"]["confirm"] = $confirm;
+    $serverdatabase["keydata"]["confirmTS"] = $confirmTS;
+    $fdata = json_encode($serverdatabase);
+    fwrite($fdatabase, $fdata);
+    fclose($fdatabase);
 
     /*$testarray = json_encode($dataArray);
     var_dump($testarray);
     echo "<br><br>";*/
     //================
     //$this->updatereport($data);
-    $this->updatereport($dataArray);
+
 
     //$returnData = $this->getReturnInfo($data);
     $returnData = $this->getReturnInfo($dataArray);
@@ -168,6 +220,7 @@ class dataService {
     return $returnData;//has to be a php array
   }
   public function getReturnInfo($data){
+    //echo "KEY = " . $this->KEY . "<br>";
     $flattenData = array();
     $returnData = array(
       "status" => 1,
@@ -196,6 +249,7 @@ class dataService {
     //Load selected plant parameters
     //read appdata from database
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
+    $KEY = $serverdatabase["keydata"]["key"];
     $appData = $serverdatabase["appdata"];
     $plantid = $appData["selectedid"];
     $plantspecs = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
@@ -226,6 +280,8 @@ class dataService {
     //update modeswich
     $returnData["profile"]["manualmode"] = $appData["manualmode"];
 
+    //Save current key
+    $serverdatabase["keydata"]["currentkey"] = $KEY;
 
     $flattenData = $this->flattenArray($returnData["profile"],$flattenData);
     $flattenData = $this->flattenArray($returnData["action"],$flattenData);
@@ -233,7 +289,7 @@ class dataService {
       $flattenData[] = $value;
     };
     //var_dump($flattenData);
-    $returnStr = '{' . implode(',' , $flattenData) .'}';
+    $returnStr = '{' . implode(',' , $flattenData) . "," . $serverdatabase["keydata"]["currentkey"] .'}';
     //var_dump($returnStr);
 
     $fdata = json_encode($serverdatabase);

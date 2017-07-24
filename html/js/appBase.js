@@ -26,6 +26,7 @@
         empty : false
       },
       manualmode : false,
+      lastConfirm : "",
       status : {}
     },
     backEndDataString : '',
@@ -132,6 +133,7 @@
             data.backEndData.status = response.data.report.status;
             //console.log("******(database)red led = " + response.data.report.status.LightR);
             data.backEndData.manualmode = response.data.appdata.manualmode;
+            data.backEndData.lastConfirm = response.data.keydata.confirmTS;
             data.backEndData.waterTankLevel = response.data.report.waterTankLevel;
             data.selectedPlant.selectedid = response.data.appdata.selectedid;
             data.selectedPlant.profileImg = data.plantsInfo.plantsArray[data.selectedPlant.selectedid].profileImg;
