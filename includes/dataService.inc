@@ -224,25 +224,35 @@ class dataService {
         "profileImg" => "Unknown"
       )
     );
+    $returnData = "";
 
     //Load selected plant parameters
     //read appdata from database
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
-    $KEY = $serverdatabase["keydata"]["key"];
     $appData = $serverdatabase["appdata"];
-    $plantid = $appData["selectedid"];
+//-------------
+    $mode = (int)$appData["manualmode"];
+    $day = "";
+    $lightR = (int)$appData["action"]["lightR"];
+    $lightB = (int)$appData["action"]["lightB"];
+    $pump = (int)$appData["action"]["pump"];
+    $plantid = str_pad($appData["selectedid"],2,"0",STR_PAD_LEFT); //str_pad($input, 10, "-=", STR_PAD_LEFT);
+    $KEY = $serverdatabase["keydata"]["key"];
+//-------------
+/*
     $plantspecs = json_decode(file_get_contents(ROOTPATH . '/html/ajax/PlantSpecs.json'), true);
     $returnData["growing"] = $plantspecs["plantsArray"][$plantid];
     unset($returnData["growing"]["profileImg"]);
     unset($returnData["growing"]["species"]);
-
+*/
     $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
 
     //check if time is night time, after 21:00 and before 05:00
     if ((int)date("H") >= 21 || (int)date("H") <= 5 ){
-      //echo "Current hour = " . date("H") . "<br>";
-      //echo "Light shoulf be off! <br>";
-      $returnData["profile"]["day"] = false;
+      //$returnData["profile"]["day"] = false;
+      $day = false;
+    }else{
+      $day = true;
     };
 
     //check if the pump status is true, if yes then save a timestamp
@@ -254,28 +264,32 @@ class dataService {
     //echo "Last time watered = " . $serverdatabase["appdata"]["lastTimeWater"];
 
     //update action Array
-    $returnData["action"] = $appData["action"];
+    //$returnData["action"] = $appData["action"];
 
     //update modeswich
-    $returnData["profile"]["manualmode"] = $appData["manualmode"];
+    //$returnData["profile"]["manualmode"] = $appData["manualmode"];
 
     //Save current key
     $serverdatabase["keydata"]["currentkey"] = $KEY;
 
+/*
     $flattenData = $this->flattenArray($returnData["profile"],$flattenData);
     $flattenData = $this->flattenArray($returnData["action"],$flattenData);
     foreach($returnData["growing"] as $value){
       $flattenData[] = $value;
     };
+*/
     //var_dump($flattenData);
-    $returnStr = '{' . implode(',' , $flattenData) . "," . $serverdatabase["keydata"]["currentkey"] .'}';
+    $Shortdatastring = "{" . $mode . (int)$day . $lightR . $lightB . $pump . $plantid . $KEY . "}";
+    //echo "<br>" . $Shortdatastring . "<br>";
+//    $returnStr = '{' . implode(',' , $flattenData) . "," . $serverdatabase["keydata"]["currentkey"] .'}';
     //var_dump($returnStr);
 
     $fdata = json_encode($serverdatabase);
     fwrite($fdatabase, $fdata);
     fclose($fdatabase);
 
-    return $returnStr;
+    return $Shortdatastring;
   }
   public function flattenArray($oldA,$newA){
     foreach($oldA as $value){
