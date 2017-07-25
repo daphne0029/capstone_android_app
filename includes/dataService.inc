@@ -188,31 +188,10 @@ class dataService {
     //echo "Key received is " . (int)$dataArray["key"] . ", should be " . (int)$currentKEY . "<br>";
 
     if((int)$currentKEY == (int)$dataArray["key"]){
-      //echo "update app <br>";
-      $confirm = true;
-      $confirmTS = date("Y-m-d H:i:s");
       //only update report when key matches
       $this->updatereport($dataArray);
-      //Write pump action back to false
-      $serverdatabase["appdata"]["action"]["pump"] = false;
-    }else{
-      //echo "Do NOT update app <br>";
-      $confirm = false;
+
     }
-
-    $fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
-    $serverdatabase["keydata"]["confirm"] = $confirm;
-    $serverdatabase["keydata"]["confirmTS"] = $confirmTS;
-    $fdata = json_encode($serverdatabase);
-    fwrite($fdatabase, $fdata);
-    fclose($fdatabase);
-
-    /*$testarray = json_encode($dataArray);
-    var_dump($testarray);
-    echo "<br><br>";*/
-    //================
-    //$this->updatereport($data);
-
 
     //$returnData = $this->getReturnInfo($data);
     $returnData = $this->getReturnInfo($dataArray);
@@ -312,6 +291,7 @@ class dataService {
   //Load the previous report
   //compare changes + write to log file
   //overwrite the report file
+    unset($data["key"]);
     $serverdatabase = json_decode(file_get_contents(ROOTPATH . '/html/ajax/report.json'), true);
     $preReport = $serverdatabase["report"];
     /*echo "<pre>";
@@ -354,9 +334,20 @@ class dataService {
     if (!empty($data)) {
       $serverdatabase["report"] = $data;
     }
+
+    //Write pump action back to false
+    $serverdatabase["appdata"]["action"]["pump"] = false;
+    $serverdatabase["keydata"]["confirm"] = true;
+    $serverdatabase["keydata"]["confirmTS"] = date("Y-m-d H:i:s");
+
+    //$fdatabase = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
     $freport = fopen(ROOTPATH . "/html/ajax/report.json", "w+") or die("Unable to open report.json!");
+
     $fdata = json_encode($serverdatabase);
+
     fwrite($freport, $fdata);
+    //fputs($freport,$fdata);
+
     fclose($freport);
     return;
   }
